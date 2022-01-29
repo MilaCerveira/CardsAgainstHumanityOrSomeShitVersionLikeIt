@@ -107,3 +107,13 @@
     padding: 16px 32px;
   }
 }
+
+#bottom {
+  position:absolute;                 
+  bottom:5px;                         
+  left:2px;                         
+}
+.bottom-img{
+  height:50px;
+  width:50px;
+}
