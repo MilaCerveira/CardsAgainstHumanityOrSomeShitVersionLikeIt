@@ -11,9 +11,15 @@ const Landing = () => {
                     <div className='card-front'>
                         <h1>Instead of coal Santa now gives bad children</h1>
                     </div>
-                    <div className='card-back'> <h1>Multiple stab wounds</h1></div>
+                    <div className='card-back'>
+                        <h1>Multiple stab wounds</h1>
+                        <button class="button-51" role="button">ENTER</button>
+                    </div>
                 </div>
             </div>
+           
+
+
         </>
     )
 }
