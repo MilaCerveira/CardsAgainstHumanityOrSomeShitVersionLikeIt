@@ -11,7 +11,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    animation: scale 1.5s ease-out;
+    animation: scale 2.5s ease-out;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     animation-delay: 20ms;
