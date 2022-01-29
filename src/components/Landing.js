@@ -19,7 +19,7 @@ const Landing = () => {
                         <h1>Multiple stab wounds</h1>
                         <button className="enter-button">ENTER</button>
                         <div id="bottom">
-                            <img className='bottom-img' src={cad}/>
+                            <img className='bottom-img' src={cad} alt='logo'/>
                             Cards Against Humanity
                         </div>
                     </div>
