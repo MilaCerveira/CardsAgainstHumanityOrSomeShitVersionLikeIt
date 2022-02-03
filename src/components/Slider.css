@@ -1,0 +1,42 @@
+
+
+.container{
+    margin: 0 20px;
+    width: 600px;
+    border-color: whitesmoke;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    top: 1500px;
+    background-color:  #121212;
+}
+.item{
+    min-height: 30rem;
+    min-width: 20rem;
+    padding: 5px;
+    
+    
+  }
+  
+  .item img{
+    width:50%;
+    height:50%;
+    border-radius:2rem;
+    pointer-events: none;
+
+  }
+  
+  .inner-slider{
+    display: flex;
+   
+  
+ 
+  }
+  
+  .slider{ 
+    cursor: grab;
+    overflow: hidden;
+    height: 400px;
+   }
+  

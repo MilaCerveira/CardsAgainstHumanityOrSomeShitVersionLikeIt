@@ -1,6 +1,8 @@
 import './Landing.css';
 import cad from '../assets/cad.png';
+
 const Landing = () => {
+
     return (
         <>
             <h1>Cards</h1>
@@ -25,7 +27,7 @@ const Landing = () => {
                     </div>
                 </div>
             </div>
-           
+      
         </>
     )
 }

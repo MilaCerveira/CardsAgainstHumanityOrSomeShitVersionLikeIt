@@ -1,20 +1,38 @@
 import { motion } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import white from '../assets/white.png';
-import black from '../assets/black.png';
-
+import './Slider.css';
+import images from "./images";
 const Slider = () => {
+    const [width, setWidth] = useState(0);
+    const slider = useRef();
+    
+    useEffect(() => {
+    setWidth(slider.current.scrollWidth - slider.current.offsetWidth);
+   
+    }, [])
+
+    
     return (
         <>
-            <h1>I'm a slider </h1>
-            <motion.div className="slider">
-                <motion.div className="inner-slider">
-
+    
+        <div className="container">
+        <h2>Question: blah</h2>
+        <h2>Options</h2>
+            <motion.div ref={slider} className="slider" whileTap={{cursor:"grabbing"}}>
+                <motion.div  drag="x"  dragConstraints={{right:0, left: -width}} className="inner-slider">
+                {images.map(image=> {
+                    return(
+                       <motion.div className="item"> 
+                           <img src={image} alt="img"/>
+                           </motion.div> 
+                    );
+                })}
                 </motion.div>
 
             </motion.div>
 
+        </div>
         </>
-    )
+    );
 }
 export default Slider;
