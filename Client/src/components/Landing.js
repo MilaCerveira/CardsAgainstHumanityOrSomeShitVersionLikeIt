@@ -13,7 +13,6 @@ const Landing = () => {
     return (
         <>
             <h1>Cards</h1>
-            <button onClick = {handleNavigate}>To Game</button>
            <span className='red'><h1>Against</h1></span> 
             <h1> Humanity</h1>
             <div className='card'>
@@ -27,7 +26,7 @@ const Landing = () => {
                     </div>
                     <div className='card-back'>
                         <h1>Multiple stab wounds</h1>
-                        <button className="enter-button">ENTER</button>
+                        <button className="enter-button" onClick ={handleNavigate}>ENTER</button>
                         <div id="bottom">
                             <img className='bottom-img' src={cad} alt='logo'/>
                             Cards Against Humanity
