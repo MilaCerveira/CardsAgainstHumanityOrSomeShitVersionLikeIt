@@ -1,12 +1,11 @@
 import './App.css';
-import Landing from './components/Landing';
-import Slider from './components/Slider';
+import CaHContainer from './Container/CaHContainer';
+
 
 function App() {
   return (
     <div className="App">
-      <Landing/>
-     <Slider/>
+      <CaHContainer/>
     </div>
   );
 }

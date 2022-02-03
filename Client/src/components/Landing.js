@@ -1,11 +1,19 @@
 import './landing.css';
 import cad from '../assets/cad.png';
+import {useNavigate} from 'react-router-dom';
 
 const Landing = () => {
+
+    const navigate = useNavigate();
+    
+    const handleNavigate = () => {
+        navigate('/Game');
+    }
 
     return (
         <>
             <h1>Cards</h1>
+            <button onClick = {handleNavigate}>To Game</button>
            <span className='red'><h1>Against</h1></span> 
             <h1> Humanity</h1>
             <div className='card'>

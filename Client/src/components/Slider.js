@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import './Slider.css';
 import images from "./images";
 const Slider = () => {
@@ -20,10 +20,10 @@ const Slider = () => {
         <h2>Options</h2>
             <motion.div ref={slider} className="slider" whileTap={{cursor:"grabbing"}}>
                 <motion.div  drag="x"  dragConstraints={{right:0, left: -width}} className="inner-slider">
-                {images.map(image=> {
+                {images.map((image, index)=> {
                     return(
-                       <motion.div className="item"> 
-                           <img src={image} alt="img"/>
+                       <motion.div className="item" key = {index}> 
+                           <img src={image} alt="img" />
                            </motion.div> 
                     );
                 })}
