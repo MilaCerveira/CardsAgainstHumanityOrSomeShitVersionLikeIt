@@ -17,11 +17,12 @@ const Modal = () => {
                         </label>
                         <br />
                         <label>
-                            Ref
+                            Ref:
                             <input type="number" name="number" />
                         </label>
-                        <input onClick={handleNavigate} type="submit" value="Submit" />
+                       
                     </form>
+                    <button className={"play-button"} onClick={handleNavigate} type="submit"> PLAY! </button>
                 </form>
             </div>
         </>
