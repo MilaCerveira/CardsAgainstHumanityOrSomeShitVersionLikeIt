@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import './Slider.css';
 import images from "./images";
+import WhiteCard from "./WhiteCard";
 
 const Slider = ({ cards }) => {
 
@@ -38,7 +39,7 @@ const Slider = ({ cards }) => {
                 </motion.div>
 
             </div>
-            
+           <WhiteCard/>
         </>
     );
 }

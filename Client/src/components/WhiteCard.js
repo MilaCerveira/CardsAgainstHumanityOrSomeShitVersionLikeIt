@@ -1,10 +1,10 @@
 import './WhiteCard.css';
 import cad from '../assets/cad.png';
-const WhiteCard = ({cards}) => {
+const WhiteCard = () => {
     return (
         <div className='white-card'>
        
-                <h2 className='white-card-text'>{cards[0].text}</h2>
+                <h2 className='white-card-text'>Text</h2>
              
                 <div id="bottom">
                     <img className='bottom-img' src={cad} alt='logo' />
