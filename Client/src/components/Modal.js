@@ -17,7 +17,7 @@ const Modal = () => {
                         </label>
                         <br />
                         <label>
-                            Ref:
+                            Game Id:
                             <input type="number" name="number" />
                         </label>
                        
