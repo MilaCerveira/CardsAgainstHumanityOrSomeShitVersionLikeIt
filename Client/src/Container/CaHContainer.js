@@ -5,6 +5,7 @@ import GameScreen from "../Screens/GameScreen";
 import LobbyScreen from "../Screens/LobbyScreen";
 import ResultScreen from '../Screens/ResultScreen';
 import PageNotFoundScreen from '../Screens/PageNotFound';
+import '../Container/CaHContainer.css';
 
 
 

@@ -1,0 +1,36 @@
+#gameScreen {
+    height:100%;
+    width:100%;
+    display:grid;
+    grid-template-areas:  
+    '. hand3 .'
+    'hand2 game  hand4'
+    '. hand1 .';
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+#blackCard {
+    grid-area: game;
+}
+
+
+#slider {
+    grid-area:hand1;
+}
+
+#hand2 {
+    grid-area:hand2;
+}
+
+
+#hand3 {
+    grid-area:hand3;
+}
+
+
+#hand4 {
+    grid-area:hand4;
+}
+
+

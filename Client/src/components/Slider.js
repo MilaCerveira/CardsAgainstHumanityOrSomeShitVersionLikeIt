@@ -25,28 +25,14 @@ const Slider = ({ hand }) => {
     return (
         <>
             <div className="container">
-                {/* {selectedBlackCard != undefined && (
-                    <div>
-                        <h2>{selectedBlackCard[0].text}</h2>
-                    </div>
-                )} */}
-                <h2>Hand</h2>
                 <motion.div ref={slider} className="slider" whileTap={{ cursor: "grabbing" }}>
                     <motion.div drag="x" dragConstraints={{ right: 0, left: -width }} className="inner-slider">
                         {setHand}
-                        {/* {hand.map((card, index) => {
-                            return (
-                                <motion.div className="item" key={index}>
-                                    <WhiteCard card = {card}/>
-                                </motion.div>
-                            );
-                        })} */}
                     </motion.div>
 
                 </motion.div>
 
             </div>
-           {/* <WhiteCard/> */}
         </>
     );
 }

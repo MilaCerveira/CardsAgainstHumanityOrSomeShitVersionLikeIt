@@ -22,6 +22,10 @@
   
   .white-card-text{
     border-bottom: 2px #fff solid;
+    padding-top:1rem;
+    padding-bottom:0.5rem;   
+    margin-left: 1rem;
+    margin-right:1rem;  
     font-size: 18px;
   }
 
