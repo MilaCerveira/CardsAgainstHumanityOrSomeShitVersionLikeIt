@@ -10,7 +10,7 @@ const Modal = () => {
         <>
             <div className={'modal'}>
                 <form className={'modal-content'}>
-                    <form>
+                
                         <label>
                             Name:
                             <input type="text" name="name" />
@@ -21,7 +21,7 @@ const Modal = () => {
                             <input type="number" name="number" />
                         </label>
                        
-                    </form>
+                
                     <button className={"play-button"} onClick={handleNavigate} type="submit"> START </button>
                 </form>
             </div>

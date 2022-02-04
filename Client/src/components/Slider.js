@@ -4,42 +4,49 @@ import './Slider.css';
 import images from "./images";
 import WhiteCard from "./WhiteCard";
 
-const Slider = ({ cards }) => {
+const Slider = ({ hand }) => {
 
     const [width, setWidth] = useState(0);
     const slider = useRef();
 
+
     useEffect(() => {
         setWidth(slider.current.scrollWidth - slider.current.offsetWidth);
     }, [])
-
-
-
-    console.log(cards);
+    
+    const setHand = hand.map((card, index) => {
+        return (
+            <motion.div className="item" key={index}>
+                <WhiteCard card = {card}/>
+            </motion.div>
+        );
+    })
+    
     return (
         <>
             <div className="container">
-                {cards != undefined && (
+                {/* {selectedBlackCard != undefined && (
                     <div>
-                        <h2>{cards[0].text}</h2>
+                        <h2>{selectedBlackCard[0].text}</h2>
                     </div>
-                )}
-                <h2>Options</h2>
+                )} */}
+                <h2>Hand</h2>
                 <motion.div ref={slider} className="slider" whileTap={{ cursor: "grabbing" }}>
                     <motion.div drag="x" dragConstraints={{ right: 0, left: -width }} className="inner-slider">
-                        {images.map((image, index) => {
+                        {setHand}
+                        {/* {hand.map((card, index) => {
                             return (
                                 <motion.div className="item" key={index}>
-                                    <img src={image} alt="img" />
+                                    <WhiteCard card = {card}/>
                                 </motion.div>
                             );
-                        })}
+                        })} */}
                     </motion.div>
 
                 </motion.div>
 
             </div>
-           <WhiteCard/>
+           {/* <WhiteCard/> */}
         </>
     );
 }

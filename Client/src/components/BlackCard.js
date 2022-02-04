@@ -1,10 +1,12 @@
-import './WhiteCard.css';
 import cad from '../assets/cad.png';
-const WhiteCard = ({card}) => {
+import '../components/BlackCard.css'
+
+const BlackCard = ({selectedBlackCard}) => {
+
     return (
-        <div className='white-card'>
+        <div className='black-card'>
        
-                <h2 className='white-card-text'>{card.text}</h2>
+                <h2 className='black-card-text'>{selectedBlackCard[0].text}</h2>
              
                 <div id="bottom">
                     <img className='bottom-img' src={cad} alt='logo' />
@@ -13,7 +15,7 @@ const WhiteCard = ({card}) => {
             </div>
      
 
-    );
-  };
-  
-  export default WhiteCard;
+    )}
+
+
+export default BlackCard;
