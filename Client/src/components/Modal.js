@@ -22,7 +22,7 @@ const Modal = () => {
                         </label>
                        
                     </form>
-                    <button className={"play-button"} onClick={handleNavigate} type="submit"> PLAY! </button>
+                    <button className={"play-button"} onClick={handleNavigate} type="submit"> START </button>
                 </form>
             </div>
         </>
