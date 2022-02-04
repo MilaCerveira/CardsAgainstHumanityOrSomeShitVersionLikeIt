@@ -1,4 +1,5 @@
 import Slider from "../components/Slider";
+import WhiteCard from "../components/WhiteCard";
 import arrayShuffle from 'array-shuffle';
 import { useEffect, useState } from "react";
 
@@ -31,7 +32,9 @@ const GameScreen = ({cards,loaded}) => {
          {loaded && (
                 <div id = 'slider'>
                     <Slider cards = {hand}/>
+                    <WhiteCard cards = {hand}/>
                     </div>
+                   
             )}         
         </>
     )
