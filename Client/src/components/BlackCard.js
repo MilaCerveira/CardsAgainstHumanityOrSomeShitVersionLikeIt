@@ -1,6 +1,6 @@
 import cad from '../assets/cad.png';
 import '../components/BlackCard.css';
-import {useState} from 'react';
+// import {useState} from 'react';
 
 
 const BlackCard = ({selectedBlackCard}) => {
