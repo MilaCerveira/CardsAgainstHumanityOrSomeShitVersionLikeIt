@@ -46,14 +46,14 @@ const GameScreen = ({ cards, loaded }) => {
                 )}
 
                 {hand && (
-                    <div id='slider'>
+                    <div id='hand1'>
                         <Slider hand={hand} />
                     </div>
 
                 )}
 
                 <div id='hand2'>
-
+                
                 </div>
 
                 <div id='hand3'>
@@ -61,6 +61,16 @@ const GameScreen = ({ cards, loaded }) => {
                 </div>
 
                 <div id='hand4'>
+
+                </div>
+
+                <div id = 'blackDeck'>
+                    <h3>Black Deck placeholder</h3>
+
+                </div>
+
+                <div id = 'whiteDeck'>
+                    <h3>White Deck placeholder</h3>
 
                 </div>
             </div>

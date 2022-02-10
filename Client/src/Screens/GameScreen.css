@@ -1,36 +1,51 @@
 #gameScreen {
-    height:100%;
-    width:100%;
+    height:inherit;
+    width:inherit;
     display:grid;
-    grid-template-areas:  
-    '. hand3 .'
-    'hand2 game  hand4'
-    '. hand1 .';
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+
+    grid-template-areas: '. hand3 hand3 .'
+                         'hand2 bcard blackDeck hand4'
+                         'hand2 bcard whiteDeck hand4'
+                         '. hand1 hand1 .';
+
+
+    grid-template-rows: 2fr 3fr 3fr 2fr;
+    grid-template-columns: 1fr 3fr 3fr 1fr;
 }
 
 #blackCard {
-    grid-area: game;
+    grid-area: bcard;
+    margin-top:10vh;
 }
 
-
-#slider {
+#hand1 {
     grid-area:hand1;
 }
 
 #hand2 {
     grid-area:hand2;
+    background-color: whitesmoke;
+
 }
 
 
 #hand3 {
     grid-area:hand3;
+    background-color: whitesmoke;
+   
 }
 
 
 #hand4 {
     grid-area:hand4;
+    background-color: whitesmoke;
 }
 
+#blackDeck {
+    grid-area:blackDeck;
+}
+
+#whiteDeck {
+    grid-area:whiteDeck;
+}
 

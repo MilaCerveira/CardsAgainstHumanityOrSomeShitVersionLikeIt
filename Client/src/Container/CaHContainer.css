@@ -1,5 +1,8 @@
 #RouterContainer {
     background-color: #121212;
     color: white;
-    height:89rem;
+    width:100vw;
+    height:100vh;        
+    margin:0;
+    padding:0;
 }

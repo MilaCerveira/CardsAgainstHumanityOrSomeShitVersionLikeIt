@@ -1,13 +1,11 @@
 .black-card {
     cursor: pointer;
     background-color: black;
-    height: 320px;
-    perspective: 1000px;
+    height: 44%;  
+    perspective: 10rem;
     color: white;
-    width: 230px;
-    display: flex;
-    border-radius: 20px;
-    justify-content: space-evenly;
+    width: 24%;
+    border-radius: 10%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -23,20 +21,21 @@
   
   
   .black-card-text{
-    padding-top:1rem;
-    padding-bottom:0.5rem;   
-    margin-left: 1rem;
-    margin-right:1rem;  
-    border-bottom: 2px #fff solid;
-    font-size: 18px;
+    padding-top:1vmax;
+    padding-bottom:1vh;   
+    margin-left: 1.25vmax;
+    margin-right: 1.25vmax;  
+    border-bottom: 0.1vmin #fff solid;
+    font-size :1.25vmin;
   }
 
   #bottom {
     position:absolute;                 
-    bottom:5px;                         
-    left:2px;                         
+    bottom:0.5rem;                         
+    left:0.5rem;     
+    font-size: 0.7vmin;                    
   }
   .bottom-img{
-    height:50px;
-    width:50px;
+    height:15%;
+    width:15%;
   }
