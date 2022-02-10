@@ -1,0 +1,13 @@
+#white-deck {
+    cursor: pointer;
+    background-color: whitesmoke;
+    height: 70%;  
+    perspective: 10rem;
+    color: black;
+    width: 24%;
+    border-radius: 10%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: silver 0px 5px 20px, silver 0px 5px 20px;
+  }

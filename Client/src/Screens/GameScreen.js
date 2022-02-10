@@ -2,6 +2,8 @@ import Slider from "../components/Slider";
 import arrayShuffle from 'array-shuffle';
 import { useEffect, useState } from "react";
 import BlackCard from "../components/BlackCard";
+import BlackDeck from '../components/BlackDeck';
+import WhiteDeck from '../components/WhiteDeck';
 import '../Screens/GameScreen.css';
 
 const GameScreen = ({ cards, loaded }) => {
@@ -65,13 +67,11 @@ const GameScreen = ({ cards, loaded }) => {
                 </div>
 
                 <div id = 'blackDeck'>
-                    <h3>Black Deck placeholder</h3>
-
+                    <BlackDeck/>
                 </div>
 
                 <div id = 'whiteDeck'>
-                    <h3>White Deck placeholder</h3>
-
+                    <WhiteDeck/>
                 </div>
             </div>
         </>

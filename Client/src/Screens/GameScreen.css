@@ -42,6 +42,7 @@
 }
 
 #blackDeck {
+    margin-top: 2vh;
     grid-area:blackDeck;
 }
 
