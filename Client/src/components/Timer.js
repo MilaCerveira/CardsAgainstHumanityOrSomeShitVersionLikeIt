@@ -2,7 +2,7 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 const Timer = () => {
 
-    let minuteSeconds = 30;
+    let seconds = 30;
 
     const timerProps = {
         isPlaying: true,
@@ -27,7 +27,7 @@ const Timer = () => {
         }
     };
 
-    const getTimeSeconds = (time) => (minuteSeconds - time) | 0;
+    const getTimeSeconds = (time) => (seconds - time) | 0;
     return (
 
         <>
@@ -35,7 +35,7 @@ const Timer = () => {
                 {...timerProps}
                 colors={["#A6D9F7", "#BCCCE0", "#FF0000"]}
                 colorsTime={[30, 10, 0]}
-                duration={minuteSeconds}
+                duration={seconds}
                 initialRemainingTime={30}
                 onComplete={(totalElapsedTime) => [30 - totalElapsedTime > 0, false]}
             >
