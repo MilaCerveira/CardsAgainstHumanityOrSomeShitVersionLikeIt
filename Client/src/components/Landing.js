@@ -23,8 +23,8 @@ const Landing = () => {
                         <h1>Multiple stab wounds</h1>
                         <button className="enter-button" onClick={() => setShowModal(!showModal)} >ENTER</button>
                         {showModal && <Modal />}
-                        <div id="bottom">
-                            <img className='bottom-img' src={cad} alt='logo' />
+                        <div id="landing-bottom">
+                            <img className='landing-bottom-img' src={cad} alt='logo' />
                             Cards Against Humanity
                         </div>
                     </div>
