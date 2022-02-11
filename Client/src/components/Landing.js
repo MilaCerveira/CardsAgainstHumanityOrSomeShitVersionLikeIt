@@ -14,8 +14,8 @@ const Landing = () => {
                 <div className='card-inner'>
                     <div className='card-front'>
                         <h1>Instead of coal Santa now gives bad children</h1>
-                        <div id="bottom">
-                            <img className='bottom-img' src={cad} alt='logo' />
+                        <div id="landing-bottom">
+                            <img className='landing-bottom-img' src={cad} alt='logo' />
                             Cards Against Humanity
                         </div>
                     </div>

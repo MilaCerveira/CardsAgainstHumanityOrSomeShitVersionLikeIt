@@ -117,12 +117,12 @@
   }
 }
 
-#bottom {
+#landing-bottom {
   position:absolute;                 
   bottom:5px;                         
   left:2px;                         
 }
-.bottom-img{
+.landing-bottom-img{
   height:50px;
   width:50px;
 }

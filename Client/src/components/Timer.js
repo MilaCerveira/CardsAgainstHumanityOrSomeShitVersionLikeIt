@@ -11,7 +11,7 @@ const Timer = () => {
     };
 
     const renderTime = (time) => {
-        if (time > 0){
+        if (time > 3){
         return (
             <>
                 <div>{time}</div>
@@ -20,7 +20,7 @@ const Timer = () => {
         
         );
         }
-        else if (time == 0){
+        else if (time <= 3){
             return (
                 <div>🍆</div>
             )
