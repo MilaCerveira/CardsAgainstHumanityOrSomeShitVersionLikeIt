@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import BlackCard from "../components/BlackCard";
 import BlackDeck from '../components/BlackDeck';
 import WhiteDeck from '../components/WhiteDeck';
+import OpponentHand from "../components/OpponentHand";
 import '../Screens/GameScreen.css';
 
 const GameScreen = ({ cards, loaded }) => {
@@ -55,23 +56,24 @@ const GameScreen = ({ cards, loaded }) => {
                 )}
 
                 <div id='hand2'>
-                
+                    <OpponentHand identifier = 'card-left' id = 'hand-left' />
                 </div>
 
                 <div id='hand3'>
+                    <OpponentHand identifier = 'card-top' id = 'hand-top'/>
 
                 </div>
 
                 <div id='hand4'>
-
+                    <OpponentHand identifier = 'card-right'id = 'hand-right'/>
                 </div>
 
-                <div id = 'blackDeck'>
-                    <BlackDeck/>
+                <div id='blackDeck'>
+                    <BlackDeck />
                 </div>
 
-                <div id = 'whiteDeck'>
-                    <WhiteDeck/>
+                <div id='whiteDeck'>
+                    <WhiteDeck />
                 </div>
             </div>
         </>

@@ -1,4 +1,5 @@
 #black-deck {
+    cursor: pointer;
     background-color: black;
     height: 70%;  
     perspective: 10rem;

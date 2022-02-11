@@ -1,0 +1,100 @@
+.opponent-card {
+    background-color: whitesmoke;
+    height:inherit;
+    width:9vw;
+    perspective: 10rem;
+    border: 1px black solid;
+    color: black;
+    border-radius: 10%;
+    margin-top:2vh;    
+}
+
+.card-left {
+    position:absolute;
+    transform:rotateZ(-90deg);
+  }
+
+.card-top:nth-child(1) {
+    transform-origin:bottom;
+    transform:skew(20deg) translateX(-6vw);
+
+}
+
+.card-top:nth-child(2) {
+    transform-origin:bottom;
+    transform:skew(15deg) translateX(-5vw);
+}
+
+
+.card-top:nth-child(3) {
+    transform-origin:bottom;
+    transform:skew(10deg) translateX(-4vw);
+}
+
+
+.card-top:nth-child(4) {
+    transform-origin:bottom;
+    transform:skew(-20deg) translateX(6vw);
+    
+}
+
+.card-top:nth-child(5) {
+    transform-origin:bottom;
+    transform:skew(-15deg) translateX(5vw);   
+}
+
+.card-top:nth-child(6) {
+    transform-origin:bottom;
+    transform:skew(-10deg) translateX(4vw);
+}
+
+.card-right {
+    position:absolute;
+    transform:rotateZ(90deg);
+
+  }
+
+.card-top {
+    position:absolute;
+  }
+
+.hand {
+    /* border: 0.5vh solid whitesmoke; */
+    height: 15vh; 
+}
+
+#hand-left{
+    align-items: center;
+    justify-content: center;
+    display:flex;
+    flex-direction: column;
+    /* height:100%; */
+  }
+
+
+#hand-top{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 3vh;
+  }
+
+#hand-right {
+    align-items: center;
+    justify-content: center;
+    display:flex;
+    flex-direction: column;
+    /* height:100%; */
+  }
+
+
+
+  
+.opponent-card > img {
+    position:absolute;
+    height:80%;
+    left:1vw;
+    bottom:1vh;
+    width:80%;
+}
