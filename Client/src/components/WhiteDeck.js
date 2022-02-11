@@ -1,13 +1,15 @@
+import { useState } from 'react';
 import cad from '../assets/cad.png';
 import '../components/WhiteDeck.css';
+import arrayShuffle from 'array-shuffle';
 
 
 
-const WhiteDeck = () => {
+const WhiteDeck = ({onWhiteCardSelect}) => {
 
     return (
 
-        <div id='white-deck' >
+        <div id='white-deck' onClick = {onWhiteCardSelect}>
             <div className='cah-logo'>
                 <img src={cad} alt='logo' />
             </div>

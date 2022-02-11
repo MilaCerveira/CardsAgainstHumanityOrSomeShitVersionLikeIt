@@ -1,25 +1,24 @@
 import cad from '../assets/cad.png';
-import '../components/OpponentHand.css';
+import '../components/HandTop.css';
 
-const OpponentHand = ({ identifier, id }) => {
+const HandTop = () => {
 
     let handCounter = [1, 2, 3, 4, 5, 6, 7];
 
     const createdHand = handCounter.map((counter, index) => {
 
-        return (<div className={`${identifier} opponent-card`} key={index}>
+        return (<div className='card-top' key={index}>
             <img src={cad} alt='logo' />
         </div>);
     })
 
     return (
         <>
-            <div className='hand' id={id} >
+            <div className='hand' id='hand-top' >
                 {createdHand}
             </div>
         </>
-
     )
 }
 
-export default OpponentHand;
+export default HandTop;

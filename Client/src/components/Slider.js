@@ -7,22 +7,23 @@ const Slider = ({ hand }) => {
 
     const [width, setWidth] = useState(0);
     const slider = useRef();
+    // const[playerHand,setPlayerHand] = useState(hand);
     
-
+    let setHand;
     useEffect(() => {
         setWidth(slider.current.scrollWidth - slider.current.offsetWidth);
     }, [])
 
-
-    const setHand = hand.map((card, index) => {
+    if (hand) {
+    setHand = hand.map((card, index) => {
+        console.log(index);
         return (
             <motion.div className="item" key={index} whileHover={{ scale: 1.1 }}>
                 <WhiteCard card={card} />
             </motion.div>
         );
     })
-
-
+}
 
     return (
         <>
@@ -31,7 +32,6 @@ const Slider = ({ hand }) => {
                     {<motion.div drag="x" dragConstraints={{ right: 0, left: - width }} className="inner-slider">
                         {setHand}
                     </motion.div>}
-
                 </motion.div>
 
             </div>

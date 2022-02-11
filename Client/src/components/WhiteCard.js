@@ -15,11 +15,6 @@ const WhiteCard = ({card}) => {
         <div className='white-card'  onClick={toggleSelected} >
        
                 <h2 className='white-card-text'>{card.text}</h2>
-                {selected && (
-                    <div id ='button'>
-                        {/* <button>Submit</button> */}
-                    </div>
-                )}
                 <div id="bottom">
                     <img className='bottom-img' src={cad} alt='logo' />
                     Cards Against Humanity
