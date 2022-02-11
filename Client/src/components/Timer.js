@@ -1,43 +1,51 @@
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 const Timer = () => {
-  
-const minuteSeconds = 60;
 
-const timerProps = {
-  isPlaying: true,
-  size: 140,
-  strokeWidth: 6
-};
+    let minuteSeconds = 30;
 
-const renderTime = (time) => {
-  return (
-    <>
-      <div>{time}</div>
-     
-      </>
-  );
-};
-      
-const getTimeSeconds = (time) => (minuteSeconds - time) | 0;
-  return (
-      
-      <>
-      <CountdownCircleTimer
-        {...timerProps}
-        colors={["#A6D9F7", "#BCCCE0", "#FF0000"]}
-        colorsTime={[60, 10, 0]}
-        duration={minuteSeconds}
-        initialRemainingTime={60}
-        onComplete={(totalElapsedTime) => [60 - totalElapsedTime > 0, false]}
-      >
-        {({ elapsedTime }) =>
-          renderTime(getTimeSeconds(elapsedTime))
+    const timerProps = {
+        isPlaying: true,
+        size: 140,
+        strokeWidth: 6
+    };
+
+    const renderTime = (time) => {
+        if (time > 0){
+        return (
+            <>
+                <div>{time}</div>
+
+            </>
+        
+        );
         }
-      </CountdownCircleTimer>
-  
-      </>
-  )
- 
-  }
+        else if (time == 0){
+            return (
+                <div>🍆</div>
+            )
+        }
+    };
+
+    const getTimeSeconds = (time) => (minuteSeconds - time) | 0;
+    return (
+
+        <>
+            <CountdownCircleTimer
+                {...timerProps}
+                colors={["#A6D9F7", "#BCCCE0", "#FF0000"]}
+                colorsTime={[30, 10, 0]}
+                duration={minuteSeconds}
+                initialRemainingTime={30}
+                onComplete={(totalElapsedTime) => [30 - totalElapsedTime > 0, false]}
+            >
+                {({ elapsedTime }) =>
+                    renderTime(getTimeSeconds(elapsedTime))
+                }
+            </CountdownCircleTimer>
+
+        </>
+    )
+
+}
 export default Timer;
