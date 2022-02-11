@@ -6,6 +6,7 @@ import BlackDeck from '../components/BlackDeck';
 import WhiteDeck from '../components/WhiteDeck';
 import OpponentHand from "../components/OpponentHand";
 import '../Screens/GameScreen.css';
+import Timer from "../components/Timer";
 
 const GameScreen = ({ cards, loaded }) => {
     const [hand, setHand] = useState();
@@ -43,8 +44,11 @@ const GameScreen = ({ cards, loaded }) => {
         <>
             <div id="gameScreen">
                 {selectedBlackCard && (
+                    
                     <div id='blackCard'>
+                        
                         <BlackCard selectedBlackCard={selectedBlackCard} />
+                        <Timer/>
                     </div>
                 )}
 
@@ -76,6 +80,7 @@ const GameScreen = ({ cards, loaded }) => {
                     <WhiteDeck />
                 </div>
             </div>
+           
         </>
     )
 }
