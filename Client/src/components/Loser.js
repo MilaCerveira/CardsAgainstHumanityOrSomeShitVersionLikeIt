@@ -19,8 +19,10 @@ const Loser = () => {
    const setEmoji = emoArray.map((emo) => {
         return (
             <motion.div 
-       
+            initial={{ y: Math.random() *800 , x: Math.random() *800 }}
             animate={{
+               
+             
               y: Math.random() * 600,
               x: Math.random() * 600,
               scale: [2, 3, 2, 3, 2]
