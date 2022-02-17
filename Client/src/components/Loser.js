@@ -1,17 +1,57 @@
 
 import lovetrash  from '../assets/lovetrash.mp3';
-
+import './Loser.css';
+import { motion, useElementScroll, useTransform } from "framer-motion";
 const Loser = () => {
     
     const play = () => {
         const trash = new Audio(lovetrash);
-        trash.play();
-        
+        trash.play();    
     };
+
+    const emoArray = [];
+    for (let i = 0; i <= 100 ; i++) {
+      emoArray.push( ' 💩 ')
+      emoArray.push('👎  ')
+      emoArray.push('🗑️')
+      emoArray.push ('🐀')
+    }
+   const setEmoji = emoArray.map((emo) => {
+        return (
+            <motion.div 
+       
+            animate={{
+              y: Math.random() * 600,
+              x: Math.random() * 600,
+              scale: [2, 3, 2, 3, 2]
+            }}
+            transition={{
+              duration: 5,
+              ease: "easeInOut",
+              loop: Infinity,
+              repeatDelay: 2
+            }}
+            whileHover={{ scale: 35 }}
+            whileTap={{ rotate: [0, 5, -5, 5, 0] }}
+          >
+          
+            <span role="img" aria-label="poop">
+              {emo}
+            </span>
+          
+          </motion.div>
+        );
+    })
+
   return (
-    <>
+    <div className='background'>
+      <motion.div 
+     >
+     {setEmoji}
+     
+     </motion.div>
     <button onClick={play}>Loser</button>
-    </>
+    </div>
   )
 }
 

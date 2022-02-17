@@ -2,6 +2,7 @@ import { useState } from "react";
 import './landing.css';
 import cad from '../assets/cad.png';
 import Modal from "./Modal";
+import Loser from "./Loser";
 
 
 const Landing = () => {
@@ -9,6 +10,7 @@ const Landing = () => {
 
     return (
         <>
+        <Loser/>
             <h1>Cards</h1>
             <span className='red'><h1>Against</h1></span>
             <h1> Humanity</h1>
