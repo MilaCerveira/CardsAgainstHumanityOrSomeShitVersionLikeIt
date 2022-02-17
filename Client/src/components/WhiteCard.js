@@ -1,33 +1,30 @@
 import './WhiteCard.css';
 import cad from '../assets/cad.png';
 import {useState} from 'react';
+import WhiteCardTitle from './WhiteCardTitle';
+import WhiteCardSubmit from './WhiteCardSubmit';
 
 
-const WhiteCard = ({card, updateSelectedAnswer}) => {
-
+const WhiteCard = ({card,index, updateSlider}) => {
     const [selected, setSelected] = useState(false);
 
-    const toggleSelected = (event) => {
-        setSelected(!selected);
-        if( event.target.children[1].firstChild.className === "notSelected") {
-        event.target.children[1].firstChild.className = "selected";
-        }
-        if(event.target.children[1].firstChild.className === "selected")
-        {
-            event.target.children[1].firstChild.className = 'notSelected';
-        }
-
-        updateSelectedAnswer(event.target);
-
+    const select = (event) => {
+        setSelected(true);
     }
 
+    const deSelect = (event) => {
+        setSelected(false);
+    }
+
+    const submitAnswer = (event) => {
+        updateSlider(event.target.id)
+    }
+
+
     return (
-        <div className='white-card' onClick={toggleSelected} >
-       
-                <h2 className='white-card-text'>{card.text}</h2>
-                    <div id ='button'>
-                        <button className = 'notSelected'>Submit</button>
-                    </div>
+        <div className='white-card' onMouseEnter={select} onMouseLeave = {deSelect}>
+                    <WhiteCardTitle text = {card.text}/>
+                    <WhiteCardSubmit id = {index} submitAnswer={(selectedCard) => submitAnswer(selectedCard)} selected = {selected} />
                 <div id="bottom">
                     <img className='bottom-img' src={cad} alt='logo' />
                     Cards Against Humanity

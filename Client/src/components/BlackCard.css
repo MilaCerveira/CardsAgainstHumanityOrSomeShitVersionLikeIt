@@ -1,10 +1,10 @@
 .black-card {
     cursor: pointer;
     background-color: black;
-    height: 64%;  
+    height: 78%;  
     perspective: 10rem;
     color: white;
-    width: 24%;
+    width: 26%;
     border-radius: 10%;
     display: block;
     margin-left: auto;

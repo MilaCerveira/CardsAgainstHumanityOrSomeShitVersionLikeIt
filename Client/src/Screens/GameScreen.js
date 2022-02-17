@@ -46,6 +46,13 @@ const GameScreen = ({ cards, loaded }) => {
         setBlackDeck(tempBlackCards);
     }
 
+    const updateAnswers = (cardId) => {
+        setSelectedAnswerCard(hand[cardId]);
+        let tempHand = [...hand];
+        let TempCard =tempHand.splice(cardId,1);
+        setHand(tempHand);
+    }
+
     return (
         <>
             <div id="gameScreen">
@@ -57,7 +64,7 @@ const GameScreen = ({ cards, loaded }) => {
                 )}
                 {hand && (
                     <div id='hand1'>
-                        <Slider hand={hand} />
+                        <Slider hand={hand} updateAnswers={(cardId) => updateAnswers(cardId)} />
                     </div>
                 )}
                 <div id='hand2'>
@@ -82,7 +89,7 @@ const GameScreen = ({ cards, loaded }) => {
                     </div>
                 )}
                 <div id='answerCards'>
-                    <AnswerPile card = {cards[0].white[0]}/>
+                    <AnswerPile card={cards[0].white[0]} />
                 </div>
             </div>
         </>
