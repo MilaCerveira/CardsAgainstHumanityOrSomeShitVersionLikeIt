@@ -9,41 +9,40 @@ import HandLeft from "../components/HandLeft";
 import HandRight from "../components/HandRight";
 import '../Screens/GameScreen.css';
 import Timer from "../components/Timer";
+import AnswerPile from "../components/AnswerPile";
+
 
 const GameScreen = ({ cards, loaded }) => {
     const [hand, setHand] = useState();
     const [whiteDeck, setWhiteDeck] = useState();
     const [selectedBlackCard, setSelectedBlackCard] = useState();
+    const [selectedAnswerCard, setSelectedAnswerCard] = useState();
     const [blackDeck, setBlackDeck] = useState();
 
-
     useEffect(() => {
-        if (loaded) {
+        if (loaded && cards[0]) {
             CreateHand();
             setBlackDeck(arrayShuffle(cards[0].black));
         }
     }, [])
 
-
     const CreateHand = () => {
         let tempCard = arrayShuffle(cards[0].white);
         setHand(tempCard.splice(0, 7));
         setWhiteDeck(tempCard);
-
     }
 
     const addToHand = () => {
         let tempHand = [...hand];
         let tempWhiteCards = [...whiteDeck];
-        tempHand.push(tempWhiteCards.splice(0,1)[0]);
+        tempHand.push(tempWhiteCards.splice(0, 1)[0]);
         setHand(tempHand);
         setWhiteDeck(tempWhiteCards);
     }
 
-
     const CreateBlackCard = () => {
         let tempBlackCards = [...blackDeck];
-        setSelectedBlackCard(tempBlackCards.splice(0,1));
+        setSelectedBlackCard(tempBlackCards.splice(0, 1));
         setBlackDeck(tempBlackCards);
     }
 
@@ -51,48 +50,43 @@ const GameScreen = ({ cards, loaded }) => {
         <>
             <div id="gameScreen">
                 {selectedBlackCard && (
-                    
                     <div id='blackCard'>
-                        
                         <BlackCard selectedBlackCard={selectedBlackCard} />
-                        <Timer/>
+                        <Timer />
                     </div>
                 )}
-
                 {hand && (
                     <div id='hand1'>
                         <Slider hand={hand} />
                     </div>
-
                 )}
-
                 <div id='hand2'>
-                    <HandLeft/>
+                    <HandLeft />
                 </div>
 
                 <div id='hand3'>
-                    <HandTop/>
-
+                    <HandTop />
                 </div>
 
                 <div id='hand4'>
-                    <HandRight/>
+                    <HandRight />
                 </div>
                 {cards[0] && (
-                <div id='blackDeck'>
-                    <BlackDeck blackCards ={cards[0].black} onBlackCardSelect={(selectedCard) => CreateBlackCard()} />
-                </div>
+                    <div id='blackDeck'>
+                        <BlackDeck blackCards={cards[0].black} onBlackCardSelect={(selectedCard) => CreateBlackCard()} />
+                    </div>
                 )}
                 {cards[0] && (
-                <div id='whiteDeck'>
-                    <WhiteDeck whiteCards ={cards[0].white} onWhiteCardSelect={() => addToHand()}/>
-                </div>
+                    <div id='whiteDeck'>
+                        <WhiteDeck whiteCards={cards[0].white} onWhiteCardSelect={() => addToHand()} />
+                    </div>
                 )}
+                <div id='answerCards'>
+                    <AnswerPile card = {cards[0].white[0]}/>
+                </div>
             </div>
-           
         </>
     )
 }
-
 
 export default GameScreen;

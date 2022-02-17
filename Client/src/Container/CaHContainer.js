@@ -6,6 +6,7 @@ import LobbyScreen from "../Screens/LobbyScreen";
 import ResultScreen from '../Screens/ResultScreen';
 import PageNotFoundScreen from '../Screens/PageNotFound';
 import '../Container/CaHContainer.css';
+import Overlay from "../components/Overlay";
 
 
 
@@ -17,7 +18,6 @@ const CaHContainer = () => {
 
     useEffect(() => {
         FetchCards();
-
     }, [])
 
 
@@ -37,6 +37,7 @@ const CaHContainer = () => {
 
     return (
         <>
+            <Overlay/>
             <div id='RouterContainer'>
                 <Router>
                     <Routes>

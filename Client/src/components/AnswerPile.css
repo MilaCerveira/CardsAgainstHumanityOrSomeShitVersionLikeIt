@@ -1,4 +1,4 @@
-.white-card {
+.answer-card {
     cursor: pointer;
     background-color: whitesmoke;
     perspective: 100px;
@@ -7,10 +7,10 @@
     height: 24vh;
     display: block;
     width:10vw;
-    padding-left:1rem;
-    margin-top:0.25rem;
-    margin-left:0.5rem;
-    margin-bottom:0.25rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: silver 0px 5px 20px, silver 0px 5px 20px;
   }
 
   .card-inner {
@@ -28,12 +28,3 @@
     margin-right:0.25rem;  
     font-size: 1vmax;
   }
-.notSelected {
-  display: none;
-  box-shadow:none;
-}
-
-.selected {
-  display: block;
-  box-shadow: silver 0px 5px 20px, silver 0px 5px 20px;
-}

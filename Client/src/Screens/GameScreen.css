@@ -4,8 +4,8 @@
     display:grid;
 
     grid-template-areas: '. hand3 hand3 .'
-                         'hand2 bcard bDeck hand4'
-                         'hand2 bcard wDeck hand4'
+                         'hand2 bCard bDeck hand4'
+                         'hand2 wCard wDeck hand4'
                          '. hand1 hand1 .';
 
 
@@ -14,8 +14,7 @@
 }
 
 #blackCard {
-    grid-area: bcard;
-    margin-top:15vh;
+    grid-area: bCard;
 }
 
 #hand1 {
@@ -53,5 +52,9 @@
 
 #whiteDeck {
     grid-area:wDeck;
+}
+
+#answerCards {
+    grid-area:wCard;
 }
 
