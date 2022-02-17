@@ -89,7 +89,7 @@ const GameScreen = ({ cards, loaded }) => {
                     </div>
                 )}
                 <div id='answerCards'>
-                    <AnswerPile card={cards[0].white[0]} />
+                    <AnswerPile card={selectedAnswerCard} />
                 </div>
             </div>
         </>
