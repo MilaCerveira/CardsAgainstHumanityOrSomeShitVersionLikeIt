@@ -9,7 +9,6 @@ import HandLeft from "../components/HandLeft";
 import HandRight from "../components/HandRight";
 import '../Screens/GameScreen.css';
 import Timer from "../components/Timer";
-import Loading from "../components/Loading";
 import AnswerPile from "../components/AnswerPile";
 
 
@@ -25,8 +24,6 @@ const GameScreen = ({ cards, loaded }) => {
             CreateHand();
             setBlackDeck(arrayShuffle(cards[0].black));
         }
-        else 
-            return <Loading/>
         
     }, [])
 
@@ -59,6 +56,7 @@ const GameScreen = ({ cards, loaded }) => {
 
     return (
         <>
+          
             <div id="gameScreen">
                 {selectedBlackCard && (
                     <div id='blackCard'>
@@ -92,9 +90,11 @@ const GameScreen = ({ cards, loaded }) => {
                         <WhiteDeck whiteCards={cards[0].white} onWhiteCardSelect={() => addToHand()} />
                     </div>
                 )}
+                {selectedAnswerCard && (
                 <div id='answerCards'>
                     <AnswerPile card={selectedAnswerCard} />
                 </div>
+                )}
             </div>
         </>
     )

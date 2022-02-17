@@ -6,6 +6,7 @@ import LobbyScreen from "../Screens/LobbyScreen";
 import ResultScreen from '../Screens/ResultScreen';
 import PageNotFoundScreen from '../Screens/PageNotFound';
 import '../Container/CaHContainer.css';
+import Loading from "../components/Loading";
 import Overlay from "../components/Overlay";
 
 
@@ -37,15 +38,21 @@ const CaHContainer = () => {
 
     return (
         <>
-            <Overlay/>
+
+            {!loaded && (
+                <div>
+                    <Loading />
+                </div>
+            )}
+            <Overlay />
             <div id='RouterContainer'>
                 <Router>
                     <Routes>
-                        <Route path="/" element={<MenuScreen/>}/>
-                        <Route path="/Lobby" element={<LobbyScreen/>}/>
-                        <Route path="/Game" element={<GameScreen cards = {cards} loaded = {loaded}/>} />
-                        <Route path="/Result" element={<ResultScreen/>}/>
-                        <Route path="/*" element={<PageNotFoundScreen/>}/>
+                        <Route path="/" element={<MenuScreen />} />
+                        <Route path="/Lobby" element={<LobbyScreen />} />
+                        <Route path="/Game" element={<GameScreen cards={cards} loaded={loaded} />} />
+                        <Route path="/Result" element={<ResultScreen />} />
+                        <Route path="/*" element={<PageNotFoundScreen />} />
                     </Routes>
                 </Router>
 
