@@ -2,6 +2,7 @@ import { useState } from "react";
 import './landing.css';
 import cad from '../assets/cad.png';
 import Modal from "./Modal";
+
 const Landing = () => {
     const [showModal, setShowModal] = useState(false);
 
