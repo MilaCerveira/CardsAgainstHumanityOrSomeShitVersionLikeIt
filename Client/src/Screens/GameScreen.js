@@ -21,7 +21,7 @@ const GameScreen = ({ cards, loaded }) => {
     const [selectedAnswerCard, setSelectedAnswerCard] = useState();
     const [blackDeck, setBlackDeck] = useState();
     const [roundCounter,setRoundCounter] = useState(1);
-    const [gamePhase, setGamePhase] = useState('drawPhase');
+    const [gamePhase, setGamePhase] = useState('selectPhase');
     const [judge,setJudge] = useState('player-2');
     const [scores,setScores] = useState([
         {
@@ -38,7 +38,8 @@ const GameScreen = ({ cards, loaded }) => {
         },
     ])
 
-  //  ['drawPhase','selectPhase','judgePhase','rewardPhase', 'gameOverPhase']);
+  //  ['drawBlackCardPhase','drawPhase',selectPhase','judgePhase','rewardPhase', 'gameOverPhase']);
+  
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -46,7 +47,6 @@ const GameScreen = ({ cards, loaded }) => {
             CreateHand();
             setBlackDeck(arrayShuffle(cards[0].black));
         }
-
     }, [])
 
     const CreateHand = () => {
@@ -56,6 +56,10 @@ const GameScreen = ({ cards, loaded }) => {
     }
 
     const addToHand = () => {
+        if ( hand.length >=7) {
+            alert('you are holding too many cards to add one');
+            return;
+        }
         let tempHand = [...hand];
         let tempWhiteCards = [...whiteDeck];
         tempHand.push(tempWhiteCards.splice(0, 1)[0]);
@@ -92,7 +96,7 @@ const GameScreen = ({ cards, loaded }) => {
                 )}
                 {hand && (
                     <div id='hand1'>
-                        <Slider hand={hand} updateAnswers={(cardId) => updateAnswers(cardId)} />
+                        <Slider hand={hand} gamePhase ={gamePhase} updateAnswers={(cardId) => updateAnswers(cardId)} />
                     </div>
                 )}
                 <div id='hand2'>
@@ -108,12 +112,12 @@ const GameScreen = ({ cards, loaded }) => {
                 </div>
                 {cards[0] && (
                     <div id='blackDeck'>
-                        <BlackDeck blackCards={cards[0].black} onBlackCardSelect={(selectedCard) => CreateBlackCard()} />
+                        <BlackDeck gamePhase = {gamePhase} blackCards={cards[0].black} onBlackCardSelect={(selectedCard) => CreateBlackCard()} />
                     </div>
                 )}
                 {cards[0] && (
                     <div id='whiteDeck'>
-                        <WhiteDeck whiteCards={cards[0].white} onWhiteCardSelect={() => addToHand()} />
+                        <WhiteDeck gamePhase = {gamePhase} whiteCards={cards[0].white} onWhiteCardSelect={() => addToHand()} />
                     </div>
                 )}
                 {selectedAnswerCard && (

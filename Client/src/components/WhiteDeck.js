@@ -5,11 +5,18 @@ import arrayShuffle from 'array-shuffle';
 
 
 
-const WhiteDeck = ({onWhiteCardSelect}) => {
+const WhiteDeck = ({ onWhiteCardSelect, gamePhase }) => {
 
+    const handleSelect = () => {
+        if (gamePhase != 'drawPhase')
+        {
+            return;
+        }
+        onWhiteCardSelect();
+    }
     return (
 
-        <div id='white-deck' onClick = {onWhiteCardSelect}>
+        <div id='white-deck' onClick={handleSelect}>
             <div className='cah-logo'>
                 <img src={cad} alt='logo' />
             </div>

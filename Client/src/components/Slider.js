@@ -3,7 +3,7 @@ import { motion, useElementScroll, useTransform } from "framer-motion";
 import './Slider.css';
 import WhiteCard from "./WhiteCard";
 
-const Slider = ({ hand, updateAnswers }) => {
+const Slider = ({ hand, updateAnswers, gamePhase }) => {
 
     const [width, setWidth] = useState(0);
     const slider = useRef();
@@ -22,7 +22,7 @@ const Slider = ({ hand, updateAnswers }) => {
     setHand = hand.map((card, index) => {
         return (
             <motion.div className="item" key={index}  whileHover={{ scale: 1.1 }}>
-                <WhiteCard card={card} index={index} updateSlider={(cardId) => updateSlider(cardId)}/>
+                <WhiteCard card={card} gamePhase = {gamePhase} index={index} updateSlider={(cardId) => updateSlider(cardId)}/>
             </motion.div>
         );
     })

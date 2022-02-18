@@ -5,7 +5,7 @@ import WhiteCardTitle from './WhiteCardTitle';
 import WhiteCardSubmit from './WhiteCardSubmit';
 
 
-const WhiteCard = ({card,index, updateSlider}) => {
+const WhiteCard = ({card,index, updateSlider, gamePhase}) => {
     const [selected, setSelected] = useState(false);
 
     const select = (event) => {
@@ -17,6 +17,10 @@ const WhiteCard = ({card,index, updateSlider}) => {
     }
 
     const submitAnswer = (event) => {
+        if (gamePhase!='selectPhase') {
+            alert('Its not the select phase');
+            return;
+        }
         updateSlider(event.target.id)
     }
 
