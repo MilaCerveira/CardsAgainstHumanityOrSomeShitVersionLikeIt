@@ -23,6 +23,7 @@ const GameScreen = ({ cards, loaded, playerId }) => {
     const [roundCounter, setRoundCounter] = useState(1);
     const [gamePhase, setGamePhase] = useState('drawBlackCardPhase');
     const [judge, setJudge] = useState(playerId);
+    const [winner,setWinner] = useState();
     const [scores, setScores] = useState([
         {
             playerName: playerId,
@@ -56,38 +57,42 @@ const GameScreen = ({ cards, loaded, playerId }) => {
     }
 
     const addToHand = () => {
-        if (hand.length >= 7) {
-            setGamePhase('selectPhase');
-            return;
-        }
         let tempHand = [...hand];
         let tempWhiteCards = [...whiteDeck];
         tempHand.push(tempWhiteCards.splice(0, 1)[0]);
         setHand(tempHand);
         setWhiteDeck(tempWhiteCards);
+        if (tempHand.length >= 7) {
+            setGamePhase('selectPhase');
+            return;
+        }
     }
 
     const CreateBlackCard = () => {
         let tempBlackCards = [...blackDeck];
         let tempSelected = tempBlackCards.splice(0, 1);
         setSelectedBlackCard(tempSelected[0]);
-        setBlackDeck(tempBlackCards[0]);
-        setGamePhase('drawPhase');
+        setBlackDeck(tempBlackCards);
+        
+        if (hand.length >=7) {
+            setGamePhase('selectPhase');
+        }
+        else {
+            setGamePhase('drawPhase');
+        }
     }
 
     const updateAnswers = (cardId, cardsCounter) => {
 
-        
-        
+   
+
         setSelectedAnswerCard(hand[cardId]);
         let tempHand = [...hand];
         let TempCard = tempHand.splice(cardId, 1);
         setHand(tempHand);
-        console.log(cardsCounter);
 
-        if (cardsCounter >= selectedBlackCard.pick) {
-            setGamePhase('judgePhase');
-            return;
+        if (cardsCounter+1 >= selectedBlackCard.pick) {
+            setGamePhase('drawBlackCardPhase'); // this will change to judge phase when implemented
         }
         
     }

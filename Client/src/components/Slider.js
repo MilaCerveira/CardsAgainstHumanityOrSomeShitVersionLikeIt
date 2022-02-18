@@ -14,11 +14,22 @@ const Slider = ({ hand, updateAnswers, gamePhase, selectedBlackCard }) => {
         setWidth(slider.current.scrollWidth - slider.current.offsetWidth);
     }, [])
 
+
+    useEffect(() => {
+        if (gamePhase === 'drawBlackCardPhase') {
+            setCardsCounter(0);
+        }
+    }, [gamePhase])
+    
+
     const updateSlider = (cardId) => {
+       
+            
+            updateAnswers(cardId,cardsCounter);
             let tempCounter = cardsCounter;
             tempCounter+=1;
             setCardsCounter(tempCounter);
-            updateAnswers(cardId,tempCounter);
+            
         
     }
 

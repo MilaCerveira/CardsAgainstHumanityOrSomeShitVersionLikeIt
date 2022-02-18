@@ -8,10 +8,6 @@ import arrayShuffle from 'array-shuffle';
 const WhiteDeck = ({ onWhiteCardSelect, gamePhase }) => {
 
     const handleSelect = () => {
-        if (gamePhase != 'drawPhase')
-        {
-            return;
-        }
         onWhiteCardSelect();
     }
     return (

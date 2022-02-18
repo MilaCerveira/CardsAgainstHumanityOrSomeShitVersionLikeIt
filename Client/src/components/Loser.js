@@ -1,4 +1,3 @@
-
 import lovetrash  from '../assets/lovetrash.mp3';
 import './Loser.css';
 import { motion, useElementScroll, useTransform } from "framer-motion";
