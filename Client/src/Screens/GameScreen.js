@@ -93,6 +93,8 @@ const GameScreen = ({ cards, loaded, playerId }) => {
 
         if (cardsCounter+1 >= selectedBlackCard.pick) {
             setGamePhase('drawBlackCardPhase'); // this will change to judge phase when implemented
+            let tempRound = roundCounter;
+            setRoundCounter(tempRound+=1);
         }
         
     }
