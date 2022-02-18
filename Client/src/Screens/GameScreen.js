@@ -10,6 +10,7 @@ import HandRight from "../components/HandRight";
 import '../Screens/GameScreen.css';
 import Timer from "../components/Timer";
 import AnswerPile from "../components/AnswerPile";
+import { useNavigate } from 'react-router-dom';
 
 
 const GameScreen = ({ cards, loaded }) => {
@@ -19,12 +20,14 @@ const GameScreen = ({ cards, loaded }) => {
     const [selectedAnswerCard, setSelectedAnswerCard] = useState();
     const [blackDeck, setBlackDeck] = useState();
 
+    let navigate = useNavigate();
+
     useEffect(() => {
         if (loaded && cards[0]) {
             CreateHand();
             setBlackDeck(arrayShuffle(cards[0].black));
         }
-        
+
     }, [])
 
     const CreateHand = () => {
@@ -50,13 +53,17 @@ const GameScreen = ({ cards, loaded }) => {
     const updateAnswers = (cardId) => {
         setSelectedAnswerCard(hand[cardId]);
         let tempHand = [...hand];
-        let TempCard =tempHand.splice(cardId,1);
+        let TempCard = tempHand.splice(cardId, 1);
         setHand(tempHand);
+    }
+
+    const goToResults = (event) => {
+        navigate('/Result');
     }
 
     return (
         <>
-          
+
             <div id="gameScreen">
                 {selectedBlackCard && (
                     <div id='blackCard'>
@@ -91,10 +98,14 @@ const GameScreen = ({ cards, loaded }) => {
                     </div>
                 )}
                 {selectedAnswerCard && (
-                <div id='answerCards'>
-                    <AnswerPile card={selectedAnswerCard} />
-                </div>
+                    <div id='answerCards'>
+                        <AnswerPile card={selectedAnswerCard} />
+                    </div>
                 )}
+                <div id='score'>
+                    <button onClick={goToResults}>Go To Results</button>
+                </div>
+
             </div>
         </>
     )

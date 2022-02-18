@@ -3,7 +3,7 @@
     width:inherit;
     display:grid;
 
-    grid-template-areas: '. hand3 hand3 .'
+    grid-template-areas: '. hand3 hand3 score'
                          'hand2 bCard bDeck hand4'
                          'hand2 wCard wDeck hand4'
                          '. hand1 hand1 .';
@@ -56,5 +56,9 @@
 
 #answerCards {
     grid-area:wCard;
+}
+
+#score {
+    grid-area:score;
 }
 
