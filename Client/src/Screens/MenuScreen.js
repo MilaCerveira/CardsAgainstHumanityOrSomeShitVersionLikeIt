@@ -3,11 +3,11 @@ import Landing from "../components/Landing";
 
 
 
-const MenuScreen = () => {
+const MenuScreen = ({updateIds}) => {
 
     return(
         <>
-        <Landing/>
+        <Landing updateIds={(playerId,gameId) => updateIds(playerId,gameId)}/>
         </>
     )
 }

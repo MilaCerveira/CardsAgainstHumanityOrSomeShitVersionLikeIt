@@ -6,8 +6,9 @@ import Modal from "./Modal";
 
 
 
-const Landing = () => {
+const Landing = ({updateIds}) => {
     const [showModal, setShowModal] = useState(false);
+
 
     return (
         <>
@@ -26,7 +27,7 @@ const Landing = () => {
                     <div className='card-back'>
                         <h1>Multiple stab wounds</h1>
                         <button className="enter-button" onClick={() => setShowModal(!showModal)} >ENTER</button>
-                        {showModal && <Modal />}
+                        {showModal && <Modal updateIds={(playerId,gameId) => updateIds(playerId,gameId)} />}
                         <div id="landing-bottom">
                             <img className='landing-bottom-img' src={cad} alt='logo' />
                             Cards Against Humanity

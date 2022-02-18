@@ -78,3 +78,14 @@
     padding: 16px 32px;
   }
 }
+
+.form-item{
+  display:flex;
+  justify-content:space-between;
+  width:10vw;
+}
+
+.form-item > input {
+  margin-left:0.5vw;
+  width:5vw;
+}

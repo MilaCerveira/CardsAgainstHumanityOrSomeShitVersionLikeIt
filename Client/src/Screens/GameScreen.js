@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import GameUI from "../components/gameUI";
 
 
-const GameScreen = ({ cards, loaded }) => {
+const GameScreen = ({ cards, loaded, playerId }) => {
     const [hand, setHand] = useState();
     const [whiteDeck, setWhiteDeck] = useState();
     const [selectedBlackCard, setSelectedBlackCard] = useState();
@@ -22,10 +22,10 @@ const GameScreen = ({ cards, loaded }) => {
     const [blackDeck, setBlackDeck] = useState();
     const [roundCounter,setRoundCounter] = useState(1);
     const [gamePhase, setGamePhase] = useState('selectPhase');
-    const [judge,setJudge] = useState('player-2');
+    const [judge,setJudge] = useState(playerId);
     const [scores,setScores] = useState([
         {
-            playerName: 'Dave',
+            playerName: playerId,
             value: 2,
         },
         {
@@ -39,7 +39,7 @@ const GameScreen = ({ cards, loaded }) => {
     ])
 
   //  ['drawBlackCardPhase','drawPhase',selectPhase','judgePhase','rewardPhase', 'gameOverPhase']);
-  
+
     let navigate = useNavigate();
 
     useEffect(() => {

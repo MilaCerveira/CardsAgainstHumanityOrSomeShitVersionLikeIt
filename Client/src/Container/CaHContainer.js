@@ -14,6 +14,8 @@ import Overlay from "../components/Overlay";
 const CaHContainer = () => {
 
     const [cards, setCards] = useState([]);
+    const [playerId,setPlayerId] = useState();
+    const [gameId, setGameId] = useState();
     const [loaded, setLoaded] = useState(false);
 
 
@@ -36,21 +38,26 @@ const CaHContainer = () => {
 
     }
 
+    const updateIds = (playerId,gameId) => {
+        setPlayerId(playerId);
+        setGameId(gameId);
+    }
+
     return (
         <>
 
             {!loaded && (
                 <div>
-                    <Loading />
+                    <Loading/>
                 </div>
             )}
             <Overlay />
             <div id='RouterContainer'>
                 <Router>
                     <Routes>
-                        <Route path="/" element={<MenuScreen />} />
+                        <Route path="/" element={<MenuScreen updateIds={(playerId,gameId) => updateIds(playerId,gameId)}/>} />
                         <Route path="/Lobby" element={<LobbyScreen />} />
-                        <Route path="/Game" element={<GameScreen cards={cards} loaded={loaded} />} />
+                        <Route path="/Game" element={<GameScreen cards={cards} loaded={loaded} playerId = {playerId}/>} />
                         <Route path="/Result" element={<ResultScreen />} />
                         <Route path="/*" element={<PageNotFoundScreen />} />
                     </Routes>
