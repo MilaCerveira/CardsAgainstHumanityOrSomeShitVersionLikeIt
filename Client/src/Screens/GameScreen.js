@@ -11,6 +11,7 @@ import '../Screens/GameScreen.css';
 import Timer from "../components/Timer";
 import AnswerPile from "../components/AnswerPile";
 import { useNavigate } from 'react-router-dom';
+import GameUI from "../components/gameUI";
 
 
 const GameScreen = ({ cards, loaded }) => {
@@ -19,7 +20,25 @@ const GameScreen = ({ cards, loaded }) => {
     const [selectedBlackCard, setSelectedBlackCard] = useState();
     const [selectedAnswerCard, setSelectedAnswerCard] = useState();
     const [blackDeck, setBlackDeck] = useState();
+    const [roundCounter,setRoundCounter] = useState(1);
+    const [gamePhase, setGamePhase] = useState('drawPhase');
+    const [judge,setJudge] = useState('player-2');
+    const [scores,setScores] = useState([
+        {
+            playerName: 'Dave',
+            value: 2,
+        },
+        {
+            playerName: 'Dave',
+            value: 2,
+        },
+        {
+            playerName: 'Dave',
+            value: 2,
+        },
+    ])
 
+  //  ['drawPhase','selectPhase','judgePhase','rewardPhase', 'gameOverPhase']);
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -103,6 +122,7 @@ const GameScreen = ({ cards, loaded }) => {
                     </div>
                 )}
                 <div id='score'>
+                    <GameUI roundCounter = {roundCounter} gamePhase = {gamePhase} scores = {scores} judge = {judge}/>
                     <button onClick={goToResults}>Go To Results</button>
                 </div>
 
