@@ -2,7 +2,7 @@ import { useState } from "react";
 import './landing.css';
 import cad from '../assets/cad.png';
 import Modal from "./Modal";
-import Loser from "./Loser";
+
 
 
 
@@ -34,7 +34,7 @@ const Landing = () => {
                     </div>
                 </div>
             </div>
-<Loser/>
+
         </>
     )
 }
