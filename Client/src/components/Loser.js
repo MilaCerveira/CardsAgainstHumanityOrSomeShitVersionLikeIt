@@ -28,9 +28,9 @@ const Loser = () => {
       emoArray2.push('🍅 ')
       emoArray2.push('Loser')
     }
-   const setEmoji = emoArray.map((emo) => {
+   const setEmoji = emoArray.map((emo, index) => {
         return (
-            <motion.div 
+            <motion.div key={index}
             initial={{ y: Math.random() *800 , x: Math.random() *800 }}
             animate={{
                
@@ -57,9 +57,9 @@ const Loser = () => {
         );
     })
 
-    const setEmoji2 = emoArray2.map((emo) => {
+    const setEmoji2 = emoArray2.map((emo, index) => {
         return (
-            <motion.div 
+            <motion.div key={index}
             initial={{ y: Math.random() * -800 , x: Math.random() * -800 }}
             animate={{
                
