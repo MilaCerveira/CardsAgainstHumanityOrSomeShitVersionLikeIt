@@ -20,10 +20,10 @@ const GameScreen = ({ cards, loaded, playerId }) => {
     const [selectedBlackCard, setSelectedBlackCard] = useState();
     const [selectedAnswerCard, setSelectedAnswerCard] = useState();
     const [blackDeck, setBlackDeck] = useState();
-    const [roundCounter,setRoundCounter] = useState(1);
-    const [gamePhase, setGamePhase] = useState('selectPhase');
-    const [judge,setJudge] = useState(playerId);
-    const [scores,setScores] = useState([
+    const [roundCounter, setRoundCounter] = useState(1);
+    const [gamePhase, setGamePhase] = useState('drawBlackCardPhase');
+    const [judge, setJudge] = useState(playerId);
+    const [scores, setScores] = useState([
         {
             playerName: playerId,
             value: 2,
@@ -38,7 +38,7 @@ const GameScreen = ({ cards, loaded, playerId }) => {
         },
     ])
 
-  //  ['drawBlackCardPhase','drawPhase',selectPhase','judgePhase','rewardPhase', 'gameOverPhase']);
+    //  ['drawBlackCardPhase','drawPhase',selectPhase','judgePhase','rewardPhase', 'gameOverPhase']);
 
     let navigate = useNavigate();
 
@@ -56,8 +56,8 @@ const GameScreen = ({ cards, loaded, playerId }) => {
     }
 
     const addToHand = () => {
-        if ( hand.length >=7) {
-            alert('you are holding too many cards to add one');
+        if (hand.length >= 7) {
+            setGamePhase('selectPhase');
             return;
         }
         let tempHand = [...hand];
@@ -69,15 +69,27 @@ const GameScreen = ({ cards, loaded, playerId }) => {
 
     const CreateBlackCard = () => {
         let tempBlackCards = [...blackDeck];
-        setSelectedBlackCard(tempBlackCards.splice(0, 1));
-        setBlackDeck(tempBlackCards);
+        let tempSelected = tempBlackCards.splice(0, 1);
+        setSelectedBlackCard(tempSelected[0]);
+        setBlackDeck(tempBlackCards[0]);
+        setGamePhase('drawPhase');
     }
 
-    const updateAnswers = (cardId) => {
+    const updateAnswers = (cardId, cardsCounter) => {
+
+        
+        
         setSelectedAnswerCard(hand[cardId]);
         let tempHand = [...hand];
         let TempCard = tempHand.splice(cardId, 1);
         setHand(tempHand);
+        console.log(cardsCounter);
+
+        if (cardsCounter >= selectedBlackCard.pick) {
+            setGamePhase('judgePhase');
+            return;
+        }
+        
     }
 
     const goToResults = (event) => {
@@ -96,7 +108,7 @@ const GameScreen = ({ cards, loaded, playerId }) => {
                 )}
                 {hand && (
                     <div id='hand1'>
-                        <Slider hand={hand} gamePhase ={gamePhase} updateAnswers={(cardId) => updateAnswers(cardId)} />
+                        <Slider hand={hand} gamePhase={gamePhase} selectedBlackCard={selectedBlackCard} updateAnswers={(cardId, cardsCounter) => updateAnswers(cardId, cardsCounter)} />
                     </div>
                 )}
                 <div id='hand2'>
@@ -112,12 +124,12 @@ const GameScreen = ({ cards, loaded, playerId }) => {
                 </div>
                 {cards[0] && (
                     <div id='blackDeck'>
-                        <BlackDeck gamePhase = {gamePhase} blackCards={cards[0].black} onBlackCardSelect={(selectedCard) => CreateBlackCard()} />
+                        <BlackDeck gamePhase={gamePhase} blackCards={cards[0].black} onBlackCardSelect={(selectedCard) => CreateBlackCard()} />
                     </div>
                 )}
                 {cards[0] && (
                     <div id='whiteDeck'>
-                        <WhiteDeck gamePhase = {gamePhase} whiteCards={cards[0].white} onWhiteCardSelect={() => addToHand()} />
+                        <WhiteDeck gamePhase={gamePhase} whiteCards={cards[0].white} onWhiteCardSelect={() => addToHand()} />
                     </div>
                 )}
                 {selectedAnswerCard && (
@@ -126,7 +138,7 @@ const GameScreen = ({ cards, loaded, playerId }) => {
                     </div>
                 )}
                 <div id='score'>
-                    <GameUI roundCounter = {roundCounter} gamePhase = {gamePhase} scores = {scores} judge = {judge}/>
+                    <GameUI roundCounter={roundCounter} gamePhase={gamePhase} scores={scores} judge={judge} />
                     <button onClick={goToResults}>Go To Results</button>
                 </div>
 

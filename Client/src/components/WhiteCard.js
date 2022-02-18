@@ -24,7 +24,6 @@ const WhiteCard = ({card,index, updateSlider, gamePhase}) => {
         updateSlider(event.target.id)
     }
 
-
     return (
         <div className='white-card' onMouseEnter={select} onMouseLeave = {deSelect}>
                     <WhiteCardTitle text = {card.text}/>

@@ -3,9 +3,10 @@ import { motion, useElementScroll, useTransform } from "framer-motion";
 import './Slider.css';
 import WhiteCard from "./WhiteCard";
 
-const Slider = ({ hand, updateAnswers, gamePhase }) => {
+const Slider = ({ hand, updateAnswers, gamePhase, selectedBlackCard }) => {
 
     const [width, setWidth] = useState(0);
+    const [cardsCounter, setCardsCounter] = useState(0);
     const slider = useRef();
     
     let setHand;
@@ -14,7 +15,11 @@ const Slider = ({ hand, updateAnswers, gamePhase }) => {
     }, [])
 
     const updateSlider = (cardId) => {
-        updateAnswers(cardId);
+            let tempCounter = cardsCounter;
+            tempCounter+=1;
+            setCardsCounter(tempCounter);
+            updateAnswers(cardId,tempCounter);
+        
     }
 
 

@@ -9,7 +9,7 @@ const BlackCard = ({selectedBlackCard}) => {
       
         <div className='black-card' >
        
-                <h2 className='black-card-text'>{selectedBlackCard[0].text}</h2>
+                <h2 className='black-card-text'>{selectedBlackCard.text}</h2>
              
                 <div id="bottom" >
                     <img className='bottom-img' src={cad} alt='logo' />
