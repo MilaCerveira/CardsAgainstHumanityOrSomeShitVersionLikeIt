@@ -42,7 +42,7 @@ const Loser = () => {
             transition={{
               duration: 5,
               ease: "easeInOut",
-              reapeat: Infinity,
+              repeat: Infinity,
               repeatDelay: 2
             }}
             whileHover={{ scale: 35 }}
@@ -71,7 +71,7 @@ const Loser = () => {
             transition={{
               duration: 5,
               ease: "easeInOut",
-              loop: Infinity,
+              repeat: Infinity,
               repeatDelay: 2
             }}
             whileHover={{ scale: 35 }}
