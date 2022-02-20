@@ -17,6 +17,7 @@ const CaHContainer = () => {
     const [playerId,setPlayerId] = useState();
     const [gameId, setGameId] = useState();
     const [loaded, setLoaded] = useState(false);
+    const [noOfPlayers,setNoOfPlayers] = useState();
 
 
     useEffect(() => {
@@ -43,6 +44,11 @@ const CaHContainer = () => {
         setGameId(gameId);
     }
 
+    const updateHostLobby = (playerId,noOfPlayers) => {
+        setPlayerId(playerId);
+        setNoOfPlayers(noOfPlayers);
+    }
+
     return (
         <>
 
@@ -55,8 +61,8 @@ const CaHContainer = () => {
             <div id='RouterContainer'>
                 <Router>
                     <Routes>
-                        <Route path="/" element={<MenuScreen updateIds={(playerId,gameId) => updateIds(playerId,gameId)}/>} />
-                        <Route path="/Lobby" element={<LobbyScreen />} />
+                        <Route path="/" element={<MenuScreen updateIds={(playerId,gameId) => updateIds(playerId,gameId)} updateHostLobby={(playerId,noOfPlayers) => updateHostLobby(playerId,noOfPlayers)}/>} />
+                        <Route path="/Lobby" element={<LobbyScreen noOfPlayers= {noOfPlayers} gameId = {gameId} playerId = {playerId}/>} />
                         <Route path="/Game" element={<GameScreen cards={cards} loaded={loaded} playerId = {playerId}/>} />
                         <Route path="/Result" element={<ResultScreen />} />
                         <Route path="/*" element={<PageNotFoundScreen />} />

@@ -6,8 +6,19 @@ import Modal from "./Modal";
 
 
 
-const Landing = ({updateIds}) => {
+const Landing = ({updateIds, updateHostLobby}) => {
     const [showModal, setShowModal] = useState(false);
+    const[playerType,setPlayerType] = useState();
+
+const joinLobby = (type) => {
+   setPlayerType(type);
+   
+}
+const setModalVisible = () => {
+    setShowModal(false);
+
+}
+
 
 
     return (
@@ -26,8 +37,11 @@ const Landing = ({updateIds}) => {
                     </div>
                     <div className='card-back'>
                         <h1>Multiple stab wounds</h1>
-                        <button className="enter-button" onClick={() => setShowModal(!showModal)} >ENTER</button>
-                        {showModal && <Modal updateIds={(playerId,gameId) => updateIds(playerId,gameId)} />}
+                        <button className="enter-button" onClick={() => {joinLobby('Host'); setShowModal(!showModal);}} >Host</button>
+                        <button className="enter-button" onClick={() => {joinLobby('Join'); setShowModal(!showModal);}} >Join</button>
+                       
+                        {showModal && 
+                        <Modal updateIds={(playerId,gameId) => updateIds(playerId,gameId)} playerType ={playerType} setModalVisible={() => setModalVisible()}  updateHostLobby={(playerId,noOfPlayers) =>  updateHostLobby(playerId,noOfPlayers)} />}
                         <div id="landing-bottom">
                             <img className='landing-bottom-img' src={cad} alt='logo' />
                             Cards Against Humanity

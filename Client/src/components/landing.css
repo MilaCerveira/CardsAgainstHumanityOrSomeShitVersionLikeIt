@@ -1,7 +1,7 @@
 .card {
     cursor: pointer;
     background-color: #121212;
-    height: 420px;
+    height: 35vh;
     perspective: 1000px;
     color: whitesmoke;
     width: 300px;
@@ -15,6 +15,7 @@
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     animation-delay: 20ms;
+    margin-top:2vh
   }
 
   .card-front {
@@ -82,7 +83,8 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  top:120px;
+  margin-top: 1vh;
+  top:7vh;
 }
 
 .enter-button:hover,
@@ -129,6 +131,16 @@
 
 h1{
   font-size: 65px;
+  /* text-align: center; */
+}
+
+
+.card-front > h1 {
+  text-align: center;
+}
+
+.card-back > h1 {
+  text-align: center;
 }
 
 .red{
