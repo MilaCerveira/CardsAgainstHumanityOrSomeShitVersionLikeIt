@@ -1,0 +1,67 @@
+.connection-card {
+    cursor: pointer;
+    background-color: #121212;
+    height: 35vh;
+    perspective: 1000px;
+    color: whitesmoke;
+    width: 12vw;
+    display: flex;
+    border-radius: 20px;
+    justify-content: space-evenly;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:2vh;
+    box-shadow: lightblue 0px 5px 20px, lightblue 0px 5px 20px;
+    font-size: 1rem;
+  }
+
+  .connection-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .connection-card h2 {
+    border-bottom: 2px #fff solid;
+    padding-bottom: 2vh;
+    margin-bottom: 2vh;
+    text-align: center;
+  }
+
+
+  .connection-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    
+  }
+
+  #game-details {
+      margin-left:1vw;
+      margin-right:1vw;
+      Height:80%;
+  }
+
+  #game-id {
+      margin-top:6vh
+  }
+
+  #game-id p {
+      margin-top:4vh
+  }
+
+  .landing-bottom-img{
+    height:50px;
+    width:50px;
+  }
+
+  #connection-bottom {
+    position:absolute;                 
+    bottom:5px;                         
+    left:2px;                         
+  }

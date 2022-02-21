@@ -4,7 +4,7 @@ const PageNotFound = () => {
 
     return(
         <>
-            <h2>404 Error : Here's a mini game</h2>
+            <h2>404 Error</h2>
         </>
     )
 }

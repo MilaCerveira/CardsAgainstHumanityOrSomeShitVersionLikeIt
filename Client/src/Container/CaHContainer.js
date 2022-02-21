@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import MenuScreen from "../Screens/MenuScreen";
 import GameScreen from "../Screens/GameScreen";
 import LobbyScreen from "../Screens/LobbyScreen";
@@ -49,6 +49,7 @@ const CaHContainer = () => {
         setNoOfPlayers(noOfPlayers);
     }
 
+
     return (
         <>
 
@@ -57,7 +58,7 @@ const CaHContainer = () => {
                     <Loading/>
                 </div>
             )}
-            <Overlay />
+            {/* <Overlay /> */}
             <div id='RouterContainer'>
                 <Router>
                     <Routes>

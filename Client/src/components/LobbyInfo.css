@@ -1,0 +1,59 @@
+.lobby-card {
+    cursor: pointer;
+    background-color: whitesmoke;
+    height: 35vh;
+    perspective: 1000px;
+    color: black;
+    width: 12vw;
+    display: flex;
+    border-radius: 20px;
+    justify-content: space-evenly;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:2vh;
+    box-shadow: lightblue 0px 5px 20px, lightblue 0px 5px 20px;
+    font-size: 1rem;
+  }
+
+  .lobby-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .lobby-card h2 {
+    border-bottom: 2px #fff solid;
+    padding-bottom: 2vh;
+    margin-bottom: 2vh;
+    text-align: center;
+  }
+
+
+  .lobby-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    
+  }
+
+  #lobby-details {
+      margin-left:1vw;
+      margin-right:1vw;
+      Height:80%;
+  }
+
+  .landing-bottom-img{
+    height:50px;
+    width:50px;
+  }
+
+  #lobby-bottom {
+    position:absolute;                 
+    bottom:5px;                         
+    left:2px;                         
+  }
