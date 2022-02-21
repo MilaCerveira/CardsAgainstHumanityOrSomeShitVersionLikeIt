@@ -1,15 +1,15 @@
 .black-card {
-    cursor: pointer;
+  cursor: pointer;
     background-color: black;
-    height: 78%;  
-    perspective: 10rem;
+    perspective: 100px;
     color: white;
-    width: 26%;
     border-radius: 10%;
+    height: 16vh;
+    width:6vw;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    box-shadow: lightblue 0px 5px 20px, lightblue 0px 5px 20px;
+    box-shadow: silver 0px 5px 20px, silver 0px 5px 20px;
   }
 
 
@@ -23,10 +23,10 @@
   .black-card-text{
     padding-top:1vmax;
     padding-bottom:1vh;   
-    margin-left: 1.25vmax;
-    margin-right: 1.25vmax;  
+    margin-left: 1.25vmin;
+    margin-right: 1.25vmin;  
     border-bottom: 0.1vmin #fff solid;
-    font-size :1.1vmin;
+    font-size :0.9vmin;
   }
 
   #bottom {
@@ -38,4 +38,13 @@
   .bottom-img{
     height:15%;
     width:15%;
+  }
+
+  .black-card:hover {
+    height: 20vh;
+    width:8vw;
+  }
+
+  .black-card:hover .black-card-text {
+    font-size: 1.3vmin;
   }

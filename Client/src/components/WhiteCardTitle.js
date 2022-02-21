@@ -1,4 +1,4 @@
-import '../components/WhiteCardTitle.css';
+// import '../components/WhiteCardTitle.css';
 
 const WhiteCardTitle = ({text}) => {
 

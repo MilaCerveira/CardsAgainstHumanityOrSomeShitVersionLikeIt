@@ -1,4 +1,6 @@
 #gameScreen {
+    background-image: url(../assets/CaH-background.png);
+    background-size:100vmax;
     height:inherit;
     width:inherit;
     display:grid;
@@ -15,6 +17,7 @@
 
 #blackCard {
     grid-area: bCard;
+    text-align: center;
 }
 
 #hand1 {
@@ -46,19 +49,24 @@
 }
 
 #blackDeck {
-    margin-top: 2vh;
     grid-area:bDeck;
+    text-align: center;
 }
 
 #whiteDeck {
     grid-area:wDeck;
+    text-align: center;
 }
 
 #answerCards {
     grid-area:wCard;
+    text-align: center;
 }
 
 #score {
     grid-area:score;
 }
 
+#gameScreen p {
+    margin-bottom:1vh;
+}

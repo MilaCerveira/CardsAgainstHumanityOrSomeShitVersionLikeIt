@@ -23,7 +23,7 @@ const GameScreen = ({ cards, loaded, playerId }) => {
     const [roundCounter, setRoundCounter] = useState(1);
     const [gamePhase, setGamePhase] = useState('drawBlackCardPhase');
     const [judge, setJudge] = useState(playerId);
-    const [winner,setWinner] = useState();
+    const [winner, setWinner] = useState();
     const [scores, setScores] = useState([
         {
             playerName: playerId,
@@ -73,8 +73,8 @@ const GameScreen = ({ cards, loaded, playerId }) => {
         let tempSelected = tempBlackCards.splice(0, 1);
         setSelectedBlackCard(tempSelected[0]);
         setBlackDeck(tempBlackCards);
-        
-        if (hand.length >=7) {
+
+        if (hand.length >= 7) {
             setGamePhase('selectPhase');
         }
         else {
@@ -84,19 +84,19 @@ const GameScreen = ({ cards, loaded, playerId }) => {
 
     const updateAnswers = (cardId, cardsCounter) => {
 
-   
+
 
         setSelectedAnswerCard(hand[cardId]);
         let tempHand = [...hand];
         let TempCard = tempHand.splice(cardId, 1);
         setHand(tempHand);
 
-        if (cardsCounter+1 >= selectedBlackCard.pick) {
+        if (cardsCounter + 1 >= selectedBlackCard.pick) {
             setGamePhase('drawBlackCardPhase'); // this will change to judge phase when implemented
             let tempRound = roundCounter;
-            setRoundCounter(tempRound+=1);
+            setRoundCounter(tempRound += 1);
         }
-        
+
     }
 
     const goToResults = (event) => {
@@ -105,12 +105,13 @@ const GameScreen = ({ cards, loaded, playerId }) => {
 
     return (
         <>
-
             <div id="gameScreen">
+
                 {selectedBlackCard && (
                     <div id='blackCard'>
+                        <p>Selected Black Card</p>
                         <BlackCard selectedBlackCard={selectedBlackCard} />
-                        <Timer />
+                        {/* <Timer /> */}
                     </div>
                 )}
                 {hand && (
@@ -131,16 +132,19 @@ const GameScreen = ({ cards, loaded, playerId }) => {
                 </div>
                 {cards[0] && (
                     <div id='blackDeck'>
+                        <p>Black Deck</p>
                         <BlackDeck gamePhase={gamePhase} blackCards={cards[0].black} onBlackCardSelect={(selectedCard) => CreateBlackCard()} />
                     </div>
                 )}
                 {cards[0] && (
                     <div id='whiteDeck'>
+                        <p>White Deck</p>
                         <WhiteDeck gamePhase={gamePhase} whiteCards={cards[0].white} onWhiteCardSelect={() => addToHand()} />
                     </div>
                 )}
                 {selectedAnswerCard && (
                     <div id='answerCards'>
+                        <p>Answers</p>
                         <AnswerPile card={selectedAnswerCard} />
                     </div>
                 )}

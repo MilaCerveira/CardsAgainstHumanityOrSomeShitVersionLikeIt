@@ -11,7 +11,7 @@ const Slider = ({ hand, updateAnswers, gamePhase, selectedBlackCard }) => {
     
     let setHand;
     useEffect(() => {
-        setWidth(slider.current.scrollWidth - slider.current.offsetWidth);
+        // setWidth(slider.current.scrollWidth - slider.current.offsetWidth);
     }, [])
 
 
@@ -37,9 +37,9 @@ const Slider = ({ hand, updateAnswers, gamePhase, selectedBlackCard }) => {
     if (hand) {
     setHand = hand.map((card, index) => {
         return (
-            <motion.div className="item" key={index}  whileHover={{ scale: 1.1 }}>
-                <WhiteCard card={card} gamePhase = {gamePhase} index={index} updateSlider={(cardId) => updateSlider(cardId)}/>
-            </motion.div>
+            // <motion.div className="item" key={index}  whileHover={{ scale: 1.1 }}>
+                <WhiteCard card={card} gamePhase = {gamePhase} index={index} key = {index} updateSlider={(cardId) => updateSlider(cardId)}/>
+            // </motion.div>
         );
     })
 }
@@ -47,7 +47,7 @@ const Slider = ({ hand, updateAnswers, gamePhase, selectedBlackCard }) => {
    
     return (
         <>
-            <div className="container">
+            {/* <div className="container">
                 <motion.div ref={slider} className="slider" whileTap={{ cursor: "grabbing" }} >
                     {<motion.div drag="x" dragConstraints={{ right: 0, left: - width }} className="inner-slider">
                         {setHand}
@@ -55,7 +55,9 @@ const Slider = ({ hand, updateAnswers, gamePhase, selectedBlackCard }) => {
                     </motion.div>}
                     
                 </motion.div>
-            </div>
+            </div> */}
+
+            {setHand}
         </>
     );
 }

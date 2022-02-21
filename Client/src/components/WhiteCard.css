@@ -4,13 +4,16 @@
     perspective: 100px;
     color: #121212;
     border-radius: 10%;
-    height: 24vh;
+    height: 16vh;
     display: block;
-    width:10vw;
+    width:6vw;
     padding-left:1rem;
     margin-top:0.25rem;
     margin-left:0.5rem;
     margin-bottom:0.25rem;
+    position:absolute;
+    border: 1px solid black;
+    font-size: 0.9vmin;
   }
 
   .card-inner {
@@ -21,8 +24,8 @@
   
 .white-card-button {
   position:absolute;
-  bottom:50%;                         
-  left:25%;  
+  bottom:30%;                         
+  left:20%;  
 
 }
 
@@ -34,4 +37,57 @@
 .selected {
   visibility: visible;
   box-shadow: silver 0px 5px 20px, silver 0px 5px 20px;
+}
+
+
+.white-card:nth-child(1) {
+  transform-origin:bottom;
+  z-index:4;
+
+}
+
+.white-card:nth-child(2) {
+  transform-origin:bottom;
+  transform:rotate(-5deg) translateX(-16vw);
+  z-index:1;
+}
+
+
+.white-card:nth-child(3) {
+  transform-origin:bottom;
+  transform:rotate(-5deg) translateX(-10vw);
+  z-index:2;
+}
+
+
+.white-card:nth-child(4) {
+  transform-origin:bottom;
+  transform:rotate(-5deg) translateX(-4vw);
+  z-index:3;
+  
+}
+
+.white-card:nth-child(5) {
+  transform-origin:bottom;
+  transform:rotate(5deg) translateX(4vw);
+  z-index:3;   
+}
+
+.white-card:nth-child(6) {
+  transform-origin:bottom;
+  transform:rotate(5deg)translateX(10vw);
+  z-index:2;
+}
+
+.white-card:nth-child(7) {
+  transform-origin:bottom;
+  transform:rotate(5deg)translateX(16vw);
+  z-index:1;
+}
+
+.white-card:hover {
+  z-index:5;
+  height: 20vh;
+  width:8vw;
+  font-size: 1.2vmin;
 }

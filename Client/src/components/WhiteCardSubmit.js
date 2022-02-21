@@ -1,3 +1,5 @@
+import '../components/WhiteCardSubmit.css'
+
 const WhiteCardSubmit = ({ submitAnswer, id, selected }) => {
     
     const className = selected ? 'selected':'notSelected';
@@ -5,7 +7,7 @@ const WhiteCardSubmit = ({ submitAnswer, id, selected }) => {
 
     return (
         <>
-        <div>
+        <div className = 'card-submit'>
             <button className={className} onClick={submitAnswer} id={id}>Submit</button>
         </div>
         </>
