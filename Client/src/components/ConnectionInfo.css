@@ -14,10 +14,6 @@
     margin-top:2vh;
     box-shadow: lightblue 0px 5px 20px, lightblue 0px 5px 20px;
     font-size: 1rem;
-    animation: scale 1.5s ease-out;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-delay: 20ms;
   }
 
   .connection-inner {

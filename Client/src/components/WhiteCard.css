@@ -41,47 +41,47 @@
 
 
 .white-card:nth-child(1) {
-  transform-origin:bottom;
+  transform:translateY(0.25vw);
   z-index:4;
 
 }
 
 .white-card:nth-child(2) {
   transform-origin:bottom;
-  transform:rotate(-5deg) translateX(-16vw);
-  z-index:1;
+  transform:rotate(-5deg) translateX(-5vw);
+  z-index: 3;
 }
 
 
 .white-card:nth-child(3) {
   transform-origin:bottom;
-  transform:rotate(-5deg) translateX(-10vw);
-  z-index:2;
+  transform:rotate(5deg) translateX(5vw);
+  z-index:3;
 }
 
 
 .white-card:nth-child(4) {
   transform-origin:bottom;
-  transform:rotate(-5deg) translateX(-4vw);
-  z-index:3;
+  transform:rotate(-5deg) translateX(-8vw);
+  z-index:2;
   
 }
 
 .white-card:nth-child(5) {
   transform-origin:bottom;
-  transform:rotate(5deg) translateX(4vw);
-  z-index:3;   
+  transform:rotate(5deg) translateX(8vw);
+  z-index:2;   
 }
 
 .white-card:nth-child(6) {
   transform-origin:bottom;
-  transform:rotate(5deg)translateX(10vw);
-  z-index:2;
+  transform:rotate(-5deg)translateX(-10vw);
+  z-index:1;
 }
 
 .white-card:nth-child(7) {
   transform-origin:bottom;
-  transform:rotate(5deg)translateX(16vw);
+  transform:rotate(5deg)translateX(10vw);
   z-index:1;
 }
 
