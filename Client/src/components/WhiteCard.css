@@ -19,15 +19,13 @@
     height: 100%;
   }
   
-  
-  .white-card-text{
-    border-bottom: 0.1vmin #fff solid;
-    padding-top:0.5vmax;
-    padding-bottom:0.3vmax;   
-    margin-left: 0.25vmax;
-    margin-right:0.25rem;  
-    font-size: 1vmax;
-  }
+.white-card-button {
+  position:absolute;
+  bottom:50%;                         
+  left:25%;  
+
+}
+
 .notSelected {
   visibility: hidden;
   box-shadow:none;

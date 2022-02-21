@@ -88,14 +88,15 @@
 
 .form-item > input {
   margin-left:0.5vw;
-  width:5vw;
+  width:auto;
 }
 
 .form-item > select {
   display:flex;
   justify-content:space-between;
-  width:5.3vw;
-  font-size: 1rem;
+  width:auto;
+  height:fit-content;
+  font-size: 0.8vw;
 
 
 }

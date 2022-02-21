@@ -18,6 +18,8 @@ const ConnectionInfo = () => {
                                 <h3>Game Id: 112233</h3>
                                 <p>Other players should enter this ID to join the lobby</p>
                             </div>
+
+                            
                         </div>
                         <div id="connection-bottom">
                             <img className='landing-bottom-img' src={cad} alt='logo' />

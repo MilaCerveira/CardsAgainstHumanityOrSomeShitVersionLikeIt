@@ -119,15 +119,15 @@ const GameScreen = ({ cards, loaded, playerId }) => {
                     </div>
                 )}
                 <div id='hand2'>
-                    <HandLeft />
+                    {/* <HandLeft /> */}
                 </div>
 
                 <div id='hand3'>
-                    <HandTop />
+                    {/* <HandTop /> */}
                 </div>
 
                 <div id='hand4'>
-                    <HandRight />
+                    {/* <HandRight /> */}
                 </div>
                 {cards[0] && (
                     <div id='blackDeck'>
