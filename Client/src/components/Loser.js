@@ -97,7 +97,7 @@ const Loser = () => {
      {setEmoji2}
      
      </motion.div>
-    <button onClick={play}>Loser</button>
+    <h1 class="neonLoser"onClick={play}>Loser</h1>
     </div>
   )
 }

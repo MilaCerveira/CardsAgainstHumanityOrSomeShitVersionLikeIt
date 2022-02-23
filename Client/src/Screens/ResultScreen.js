@@ -1,11 +1,11 @@
-// import Loser from '../components/Loser.js'
+import Loser from '../components/Loser.js'
 import Winner from '../components/Winner.js'
 
 const ResultScreen = () => {
 
     return(
         <>
-            {/* <Loser/> */}
+            <Loser/>
             <Winner/>
         </>
     )
