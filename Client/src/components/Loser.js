@@ -1,6 +1,6 @@
 import lovetrash  from '../assets/lovetrash.mp3';
 import './Loser.css';
-import { motion, useElementScroll, useTransform } from "framer-motion";
+import { motion} from "framer-motion";
 const Loser = () => {
     
     const play = () => {
