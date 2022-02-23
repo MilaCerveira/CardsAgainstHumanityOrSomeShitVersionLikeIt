@@ -1,4 +1,4 @@
-import oddjob from '../assets/oddjob.jpeg';
+import oddjob from '../assets/oddjob.png';
 import n64 from '../assets/n64.png';
 
 const PageNotFound = () => {
