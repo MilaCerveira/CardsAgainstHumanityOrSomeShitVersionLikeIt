@@ -14,7 +14,7 @@ const Winner = () => {
       winEmoArray.push('💸')
       winEmoArray.push ('🥇')
       winEmoArray.push('👑')
-      winEmoArray.push('Winner')
+      
     }
 
     const winEmoArray2 = [];
@@ -24,7 +24,7 @@ const Winner = () => {
         winEmoArray2.push('💸')
         winEmoArray2.push ('🥇')
         winEmoArray2.push('👑')
-        winEmoArray2.push('Winner')
+        
     }
    const setWinEmoji = winEmoArray.map((emo, index) => {
         return (
@@ -96,7 +96,7 @@ const Winner = () => {
      {setWinEmoji2}
      
      </motion.div>
-     <button onClick={play}>Winner</button>
+     <h1 class="neonMonster" onClick={play}>Winner</h1>
     </div>
   )
 }
