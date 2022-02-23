@@ -1,5 +1,6 @@
 import oddjob from '../assets/oddjob.png';
 import n64 from '../assets/n64.png';
+import './PageNotFound.css';
 
 const PageNotFound = () => {
 
@@ -7,8 +8,8 @@ const PageNotFound = () => {
         <>
             <h2>404 Error</h2>
 
-            <img src={oddjob} alt='oddjob' />
-            <img  src={n64} alt='Boris' />
+            <img className={'odd__job'} src={oddjob} alt='oddjob' />
+            <img className={'boris'}  src={n64} alt='Boris' />
         </>
     )
 }
