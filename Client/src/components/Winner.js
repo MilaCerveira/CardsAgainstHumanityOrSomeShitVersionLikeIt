@@ -1,4 +1,5 @@
 import { motion} from "framer-motion";
+import './Winner.css';
 const Winner = () => {
     
    
@@ -80,7 +81,7 @@ const Winner = () => {
     })
 
   return (
-    <div className='background'>
+    <div className='winner__background'>
       <motion.div 
      >
      {setWinEmoji}
