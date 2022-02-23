@@ -1,7 +1,7 @@
 .card {
     cursor: pointer;
     background-color: #121212;
-    height: 35vh;
+    height: 50vh;
     perspective: 1000px;
     color: whitesmoke;
     width: 300px;
