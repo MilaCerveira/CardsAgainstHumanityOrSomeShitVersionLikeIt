@@ -1,8 +1,12 @@
 import { motion} from "framer-motion";
+import ALLIDOISWIN  from '../assets/ALLIDOISWIN.mp3';
 import './Winner.css';
 const Winner = () => {
     
-   
+  const play = () => {
+    const winning = new Audio(ALLIDOISWIN);
+    winning.play();    
+};
     const winEmoArray = [];
     for (let i = 0; i <= 100 ; i++) {
       winEmoArray.push( '💰')
@@ -92,7 +96,7 @@ const Winner = () => {
      {setWinEmoji2}
      
      </motion.div>
-   
+     <button onClick={play}>Winner</button>
     </div>
   )
 }

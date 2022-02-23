@@ -1,0 +1,21 @@
+.popUp {
+    z-index: 1; 
+    width: 200px; 
+    height: 200px; 
+    position: fixed;
+    top:200px;
+    left: 15%;
+    
+    background: rgba(139, 156, 156, 0.04);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.9px);
+    -webkit-backdrop-filter: blur(3.9px);
+    border: 1px solid rgba(139, 156, 156, 0.36)
+  }
+  
+  .popUp-Content {
+    margin: auto;
+    padding: 40px;
+    z-index: 1; 
+  }
