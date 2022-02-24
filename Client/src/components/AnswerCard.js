@@ -1,7 +1,7 @@
 import './AnswerCard.css';
 import cad from '../assets/cad.png';
 
-const AnswerCard = ({answer}) => {
+const AnswerCard = ({answer,index}) => {
 
     return (
                 <div className='answer-card' >

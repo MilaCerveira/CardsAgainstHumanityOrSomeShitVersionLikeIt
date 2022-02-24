@@ -9,13 +9,13 @@
     background: rgba(139, 156, 156, 0.04);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(3.9px);
+    backdrop-filter: blur(11.2px);
     -webkit-backdrop-filter: blur(3.9px);
-    border: 1px solid rgba(139, 156, 156, 0.36)
-  }
+    border: 1px solid rgba(139, 156, 156, 0.36);
+  
+}
 
   .QuestionContent{
-   
     padding-top: 5vh;
     display:flex;
     justify-content: center;
@@ -30,6 +30,26 @@
     height: 50%;
     overflow: none;
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
+  }
+
+  .player1 {
+    display:flex;
+    margin-right:4vw;
   }
  
+
+  .player2 {
+    display:flex;
+    margin-right:4vw;
+  }
+
+  .player3 {
+    display:flex;
+    margin-right:4vw;
+  }
+
+  .player4 {
+    display:flex;
+    margin-right:4vw;
+  }

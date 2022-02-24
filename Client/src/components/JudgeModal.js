@@ -1,11 +1,12 @@
 import AnswerCard from './AnswerCard';
 import BlackCard from './BlackCard';
 import './JudgeModal.css';
-import WhiteCard from './WhiteCard';
+import arrayShuffle from 'array-shuffle';
 
 const JudgeModal = ({ selectedBlackCard, selectedAnswerCards, players }) => {
 
-    let playersFilter = players.map((player) => {
+    let tempPlayers = arrayShuffle([...players]);
+    let playersFilter = tempPlayers.map((player) => {
         return selectedAnswerCards.filter((answer) => {
             return answer.name === player.name;
         })
@@ -16,10 +17,20 @@ const JudgeModal = ({ selectedBlackCard, selectedAnswerCards, players }) => {
     // })
 
     const answers = playersFilter.map((player, index) => {
-        player.map((card) => {
-            let tempClass = `player ${index + 1}`
-            return <AnswerCard answer={card} key={index} className={tempClass} />
-        })
+        let tempClass = `player${index + 1}`
+        return (
+            <div className = {tempClass} key = {index}>
+                {player.map((card,index) => {
+                   
+                    return (
+                        <div key={index}>
+                            <AnswerCard answer={card}/>
+                        </div>
+
+                    )
+                })}
+            </div>
+        )
     })
 
     return (
@@ -31,7 +42,8 @@ const JudgeModal = ({ selectedBlackCard, selectedAnswerCards, players }) => {
 
                 <div className={'JudgeModal-AnswerContent'}>
 
-                    <div>{answers}</div>
+                    {answers}
+                    {/* {answers} */}
 
 
                 </div>

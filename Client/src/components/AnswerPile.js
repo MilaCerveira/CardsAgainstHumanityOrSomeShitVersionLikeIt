@@ -7,7 +7,7 @@ const AnswerPile = ({cards}) => {
 
 const answers = cards.map((answer,index) =>
     {
-        return <AnswerCard answer = {answer} key = {index}/>
+        return <AnswerCard answer = {answer} key = {index} index = {index}/>
     })
 
     return (
