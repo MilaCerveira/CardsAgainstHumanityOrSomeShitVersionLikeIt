@@ -3,22 +3,25 @@ import cad from '../assets/cad.png';
 import { useState } from 'react';
 import WhiteCardTitle from './WhiteCardTitle';
 import WhiteCardSubmit from './WhiteCardSubmit';
+import PopUp from './PopUp';
+
 
 
 const WhiteCard = ({ card, index, updateSlider, gamePhase }) => {
     const [selected, setSelected] = useState(false);
+    const [popUp, setPopUp] = useState(false);
 
+    
     const select = (event) => {
         setSelected(true);
     }
-
     const deSelect = (event) => {
         setSelected(false);
     }
 
     const submitAnswer = (event) => {
         if (gamePhase != 'selectPhase') {
-            alert('Its not the select phase');
+           setPopUp(true)
             return;
         }
         updateSlider(event.target.id)
@@ -34,6 +37,9 @@ const WhiteCard = ({ card, index, updateSlider, gamePhase }) => {
                 <img className='bottom-img' src={cad} alt='logo' />
                 Cards Against Humanity
             </div>
+            if {popUp && 
+            <PopUp text='Its not the select phase'/>
+}
         </div>
 
 

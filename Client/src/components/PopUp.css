@@ -1,10 +1,10 @@
 .popUp {
     z-index: 1; 
-    width: 200px; 
-    height: 200px; 
-    position: fixed;
-    top:200px;
-    left: 15%;
+    width: 20vw; 
+    height: 20vh; 
+    position: block;
+    top:50%;
+    left: 50%;
     
     background: rgba(139, 156, 156, 0.04);
     border-radius: 16px;
@@ -15,7 +15,5 @@
   }
   
   .popUp-Content {
-    margin: auto;
-    padding: 40px;
     z-index: 1; 
   }
