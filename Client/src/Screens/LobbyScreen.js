@@ -11,7 +11,7 @@ const LobbyScreen = ({noOfPlayers, gameId, players, socket , host}) => {
     return (
         <>
             <h1>Cards</h1>
-            <span className='red'><h1><span className='highlight'>A</span>gain<span className='highlight'>st</span></h1></span>
+            <span className='red'><h1><span className='highlight'>!</span>Again<span className='highlight'>st</span></h1></span>
             <h1> Humanity</h1>
 
             <div id='lobby'>

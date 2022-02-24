@@ -131,7 +131,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
 
 
         if (cardsCounter + 1 >= selectedBlackCard.pick) {
-            socket.emit('setPhase', 'drawBlackCardPhase'); // this will change to judge phase when implemented
+            socket.emit('setPhase', 'judgePhase'); // this will change to judge phase when implemented
             let tempRound = roundCounter;
             setRoundCounter(tempRound += 1);
         }
