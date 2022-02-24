@@ -27,7 +27,9 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     const [popUp, setPopUp] = useState(false);
     const [drawPhase, setDrawPhase] = useState(false);
     const [selectPhase, setSelectPhase] = useState(false);
+    const [judgePhase, setJudgePhase] = useState(false);
     const [judgeModal, setJudgeModal] = useState(false);
+    const [votes, setVotes] = useState([]);
 
     //  ['drawBlackCardPhase','drawPhase',selectPhase','judgePhase','rewardPhase', 'gameOverPhase']);
     useEffect(() => {
@@ -146,13 +148,6 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
             setRoundCounter(tempRound += 1);
         }
 
-        let playersFilter = players.map((player) => {
-            return selectedAnswerCards.filter((answer) => {
-                return answer.name === player.name;
-            })
-        })
-        console.log(playersFilter);
-
     }
 
     const goToResults = (event) => {
@@ -168,10 +163,21 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
 
     }
 
+    const updateVote = (player) => {
+        if(judgePhase) {
+            return;
+        }
+        votes.push(player);
+
+        socket.emit('checkPhase', 'rewardPhase');
+        socket.emit('addVote', player);
+        setJudgePhase(true);
+    }
+
     return (
         <>
            {selectedBlackCard && gamePhase === 'judgePhase' &&(
-         <JudgeModal selectedBlackCard={selectedBlackCard} selectedAnswerCards={selectedAnswerCards} players={players}/>
+         <JudgeModal selectedBlackCard={selectedBlackCard} selectedAnswerCards={selectedAnswerCards} players={players} updateVote = {(player)=>updateVote(player)}/>
         )}            
         <div id="gameScreen">
 

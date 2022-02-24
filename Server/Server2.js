@@ -3,6 +3,7 @@ let judge = 0;
 let room;
 let deck = [];
 let phases = [];
+let votes = [];
 
 
 
@@ -76,10 +77,14 @@ io.on('connection', socket => {
     socket.on('checkPhase', phase => {
         phases.push(true);
         if (phases.length >= players.length) {
-            console.log(phases);
             socket.nsp.to(room).emit('receivePhase', phase);
             phases = [];
         }
+    })
+
+    socket.on('addVote', (vote) => {
+        votes.push(vote);
+        console.log(votes);
     })
 
     socket.on('disconnect', () => {

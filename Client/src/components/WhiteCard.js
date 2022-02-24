@@ -19,7 +19,7 @@ const WhiteCard = ({ card, index, updateSlider, gamePhase, updatePopUp }) => {
     }
 
     const submitAnswer = (event) => {
-       
+        event.preventDefault();
         if (gamePhase != 'selectPhase') {
             updatePopUp();
             return;
