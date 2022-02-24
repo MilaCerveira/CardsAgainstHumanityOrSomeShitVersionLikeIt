@@ -64,7 +64,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         setWhiteDeck(tempWhiteCards);
         socket.emit('updateWhiteDeck',tempWhiteCards);
         if (tempHand.length >= 7) {
-            setGamePhase('selectPhase');
+            socket.emit('setPhase', 'selectPhase');
             return;
         }
     }
@@ -81,10 +81,10 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         socket.emit('updateBlackCards',tempSelected[0],tempBlackCards);
 
         if (hand.length >= 7) {
-            setGamePhase('selectPhase');
+            socket.emit('setPhase', 'selectPhase');
         }
         else {
-            setGamePhase('drawPhase');
+            socket.emit('setPhase', 'drawPhase');
         }
     
     }
@@ -97,6 +97,10 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         setWhiteDeck(whiteDeck)
     })
 
+    socket.on('receivePhase', (phase) => {
+        setGamePhase(phase);
+    })
+
     socket.on('sendJudge', (judge) => {
         setJudge(judge.name);
     } )
@@ -106,7 +110,6 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         setSelectedBlackCard(blackCard);
 
     })
-
 
     socket.on('receiveUpdatedWhiteCards',(whiteCards) => {
         setSelectedAnswerCards(whiteCards);
@@ -128,10 +131,17 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
 
 
         if (cardsCounter + 1 >= selectedBlackCard.pick) {
-            setGamePhase('judgePhase'); // this will change to judge phase when implemented
+            socket.emit('setPhase', 'drawBlackCardPhase'); // this will change to judge phase when implemented
             let tempRound = roundCounter;
             setRoundCounter(tempRound += 1);
         }
+
+        let playersFilter = players.map((player) => {
+            return selectedAnswerCards.filter((answer) => {
+                return answer.name === player.name;
+            })
+        })
+        console.log(playersFilter);
 
     }
 

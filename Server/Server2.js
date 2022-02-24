@@ -66,6 +66,10 @@ io.on('connection', socket => {
         deck = cards;
     })
 
+    socket.on('setPhase', phase => {
+        socket.nsp.to(room).emit('receivePhase', phase);
+    })
+
 
     socket.on('disconnect', function () {
   
