@@ -6,7 +6,7 @@ const PageNotFound = () => {
 
     return(
         <>
-            <h2>404 Error</h2>
+            <h2 className={'error'}>404 Error</h2>
 
             <img className={'odd__job'} src={oddjob} alt='oddjob' />
             <img className={'boris'}  src={n64} alt='Boris' />
