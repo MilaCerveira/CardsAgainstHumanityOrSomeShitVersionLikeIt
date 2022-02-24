@@ -21,7 +21,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     const [blackDeck, setBlackDeck] = useState();
     const [roundCounter, setRoundCounter] = useState(1);
     const [gamePhase, setGamePhase] = useState('drawBlackCardPhase');
-    const [judge, setJudge] = useState(playerId);
+    const [judge, setJudge] = useState();
     const [winner, setWinner] = useState();
     const [scores, setScores] = useState([]);
     const [popUp, setPopUp] = useState(false);
@@ -70,9 +70,9 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     }
 
     const CreateBlackCard = () => {
-        // if(judge != playerId) {
-        //     return;
-        // }
+         if(judge != playerId) {
+            return;
+        }
 
         let tempBlackCards = [...blackDeck];
         let tempSelected = tempBlackCards.splice(0, 1);
@@ -98,7 +98,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     })
 
     socket.on('sendJudge', (judge) => {
-        setJudge()
+        setJudge(judge.name);
     } )
 
     socket.on('receiveUpdatedBlackCards',(blackCard,blackDeck) => {
@@ -150,11 +150,11 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
 
     return (
         <>
-        {selectedBlackCard && gamePhase === 'judgePhase' &&(
+           {selectedBlackCard && gamePhase === 'judgePhase' &&(
          <JudgeModal selectedBlackCard={selectedBlackCard} selectedAnswerCards={selectedAnswerCards} players={players}/>
-        )}
-           <div id="gameScreen">
-           
+        )}            
+        <div id="gameScreen">
+
                 {selectedBlackCard && (
                     <div id='blackCard'>
                         <p>Selected Black Card</p>

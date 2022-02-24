@@ -81,8 +81,6 @@ const Modal = ({ updateIds, playerType, setModalVisible, updateHostLobby }) => {
                 </div>
             )}
 
-
-
             {playerType == 'Join' && (
                 <div className={'modal'}>
                     <form className={'modal-content'}>

@@ -58,11 +58,6 @@ io.on('connection', socket => {
         socket.to(room).emit('receiveUpdatedWhiteCards', whiteCards)
     })
 
-    // socket.on('updateDeck',(cards) => {
-
-    //    socket.to(room).emit('receiveDeck', cards)
-    // })
-
     socket.on('setJudge', () => {
         socket.nsp.to(room).emit('sendJudge',players[judge]);
     })
