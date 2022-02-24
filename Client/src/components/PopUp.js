@@ -1,10 +1,12 @@
+import './PopUp.css'
+
 const PopUp = ({text}) => {
     return (
         <>
             <div className={'popUp'}>
-                <p className={'popUp-Content'}>
-                    <h1>{text}</h1>
-                </p>
+                <div className={'popUp-Content'}>
+                    <h2>{text}</h2>
+                </div>
             </div>
         </>
     )

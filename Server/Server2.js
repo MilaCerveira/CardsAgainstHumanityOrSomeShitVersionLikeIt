@@ -1,5 +1,6 @@
 let players = [];
 let room;
+let deck = [];
 
 const io = require('socket.io')(3002, {
     cors: {
@@ -27,6 +28,11 @@ io.on('connection', socket => {
        
     }
     socket.nsp.to(room).emit('receive-players',players);
+    socket.nsp.to(room).emit('receiveDeck',deck);
+    })
+
+    socket.on('updateWhiteDeck', whiteDeck => {
+        socket.to(room).emit('receiveUpdatedWhiteDeck', whiteDeck);
     })
 
 
@@ -44,13 +50,22 @@ io.on('connection', socket => {
         socket.to(room).emit('receiveUpdatedWhiteCards', whiteCards)
     })
 
+    // socket.on('updateDeck',(cards) => {
+
+    //    socket.to(room).emit('receiveDeck', cards)
+    // })
+
+
+    socket.on('setDeck', cards => {
+        deck = cards;
+        console.log(`deck = ${cards}`);
+       
+        
+    })
+
 
     socket.on('disconnect', function () {
-        console.log(socket.nsp)
-        if (socket.room ===room)
-        {
-            console.log('true');
-        }
+  
         let tempIndex = players.findIndex(player => {
             return player.id === socket.id;
         })

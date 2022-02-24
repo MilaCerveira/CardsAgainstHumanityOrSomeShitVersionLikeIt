@@ -1,5 +1,6 @@
 #gameScreen {
     background-image: url(../assets/CaH-background.png);
+    background-repeat:no-repeat;
     background-size:100vmax;
     height:inherit;
     width:inherit;
@@ -69,4 +70,8 @@
 
 #gameScreen p {
     margin-bottom:1vh;
+}
+
+#popUp {
+    display:none;
 }

@@ -9,6 +9,7 @@ import Timer from "../components/Timer";
 import AnswerPile from "../components/AnswerPile";
 import { useNavigate } from 'react-router-dom';
 import GameUI from "../components/gameUI";
+import PopUp from '../components/PopUp';
 
 
 const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
@@ -22,6 +23,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     const [judge, setJudge] = useState(playerId);
     const [winner, setWinner] = useState();
     const [scores, setScores] = useState([]);
+    const [popUp, setPopUp] = useState(false);
 
     //  ['drawBlackCardPhase','drawPhase',selectPhase','judgePhase','rewardPhase', 'gameOverPhase']);
     useEffect(() => {
@@ -38,7 +40,6 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
 
 
 
-
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -46,12 +47,13 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
             CreateHand();
             setBlackDeck(arrayShuffle(cards[0].black));
         }
-    }, [])
+    }, [cards[0]])
 
     const CreateHand = () => {
         let tempCard = arrayShuffle(cards[0].white);
         setHand(tempCard.splice(0, 7));
         setWhiteDeck(tempCard);
+        socket.emit('updateWhiteDeck',tempCard);
     }
 
     const addToHand = () => {
@@ -60,6 +62,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         tempHand.push(tempWhiteCards.splice(0, 1)[0]);
         setHand(tempHand);
         setWhiteDeck(tempWhiteCards);
+        socket.emit('updateWhiteDeck',tempWhiteCards);
         if (tempHand.length >= 7) {
             setGamePhase('selectPhase');
             return;
@@ -94,6 +97,10 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
 
     })
 
+    socket.on('receiveUpdatedWhiteDeck',(whiteDeck)=> {
+        setWhiteDeck(whiteDeck);
+    })
+
     const updateAnswers = (cardId, cardsCounter) => {
         let tempSelectedArray = selectedAnswerCards;
         
@@ -116,10 +123,20 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         navigate('/Result');
     }
 
+    const handlePopUp = () => {
+        setPopUp(true);
+
+        setTimeout(() => {
+            setPopUp(false);
+        },2000);
+
+    }
+
     return (
         <>
+         
             <div id="gameScreen">
-
+           
                 {selectedBlackCard && (
                     <div id='blackCard'>
                         <p>Selected Black Card</p>
@@ -129,9 +146,12 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
                 )}
                 {hand && (
                     <div id='hand1'>
-                        <Slider hand={hand} gamePhase={gamePhase} selectedBlackCard={selectedBlackCard} updateAnswers={(cardId, cardsCounter) => updateAnswers(cardId, cardsCounter)} />
+                        <Slider hand={hand} gamePhase={gamePhase} selectedBlackCard={selectedBlackCard} updateAnswers={(cardId, cardsCounter) => updateAnswers(cardId, cardsCounter)} updatePopUp = {() => handlePopUp()}/>
                     </div>
                 )}
+
+                 {popUp && 
+                    <PopUp text = 'it is not the select phase'/>}
         
                 {cards[0] && (
                     <div id='blackDeck'>
@@ -155,6 +175,8 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
                     <GameUI roundCounter={roundCounter} gamePhase={gamePhase} scores={scores} judge={judge} />
                     <button onClick={goToResults}>Go To Results</button>
                 </div>
+
+               
 
             </div>
         </>

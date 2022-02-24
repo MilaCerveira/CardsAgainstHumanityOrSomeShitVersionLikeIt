@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
-import {io} from 'socket.io-client';
+import { io } from 'socket.io-client';
 import MenuScreen from "../Screens/MenuScreen";
 import GameScreen from "../Screens/GameScreen";
 import LobbyScreen from "../Screens/LobbyScreen";
@@ -14,23 +14,23 @@ import Overlay from "../components/Overlay";
 
 const CaHContainer = () => {
 
-   
+
 
 
     const [cards, setCards] = useState([]);
-    const [playerId,setPlayerId] = useState();
-    const [players,setPlayers] = useState([]);
+    const [playerId, setPlayerId] = useState();
+    const [players, setPlayers] = useState([]);
     const [gameId, setGameId] = useState();
     const [loaded, setLoaded] = useState(false);
-    const [noOfPlayers,setNoOfPlayers] = useState(); 
+    const [noOfPlayers, setNoOfPlayers] = useState();
     const [socket, setSocket] = useState();
     const [host, setHost] = useState(false);
 
-
     useEffect(() => {
-        FetchCards();
-    }, [])
-
+        if(socket) {
+       socket.emit('setDeck', cards);
+        }
+    }, [cards])
 
     const FetchCards = async () => {
         try {
@@ -46,50 +46,58 @@ const CaHContainer = () => {
 
     }
 
-    const updateIds = (playerId,gameId) => {
+    const updateIds = (playerId, gameId) => {
         setPlayerId(playerId);
         setGameId(gameId);
         const s = io('http://localhost:3002');
         setSocket(s);
-
         s.emit('join-game', playerId, gameId);
-       
+
        
     }
 
-    const updateHostLobby = (playerId,noOfPlayers) => {
+    const updateHostLobby = async (playerId, noOfPlayers) => {
         setPlayerId(playerId);
         setNoOfPlayers(noOfPlayers);
         const s = io('http://localhost:3002');
         setSocket(s);
         setGameId('test');
-        s.emit('set-room','test');
-        s.emit('join-game', playerId, 'test');
+        await s.emit('set-room', 'test');
+        
         setHost(true);
+        await FetchCards();
+        await s.emit('join-game', playerId, 'test');
        
+
     }
 
-    if(socket) {
-    socket.on('receive-players', playerList => {
-        let tempList = playerList;
-        setPlayers(tempList);
-    })
-}
+    if (socket) {
+        socket.on('receive-players', playerList => {
+            let tempList = playerList;
+            setPlayers(tempList);
+        })
+
+        socket.on('receiveDeck', cards => {
+            setCards(cards);
+            setLoaded(true);
+        })
+
+    }
     return (
         <>
 
             {!loaded && (
                 <div>
-                    <Loading/>
+                    {/* <Loading /> TO DO :MOVE to lobby */}
                 </div>
             )}
             {/* <Overlay /> */}
             <div id='RouterContainer'>
                 <Router>
                     <Routes>
-                        <Route path="/" element={<MenuScreen updateIds={(playerId,gameId) => updateIds(playerId,gameId)} updateHostLobby={(playerId,noOfPlayers) => updateHostLobby(playerId,noOfPlayers)}/>} />
-                        <Route path="/Lobby" element={<LobbyScreen players = {players} noOfPlayers= {noOfPlayers} gameId = {gameId} socket={socket} host = {host}/>} />
-                        <Route path="/Game" element={<GameScreen cards={cards} loaded={loaded} playerId = {playerId} players = {players} socket = {socket}/>} />
+                        <Route path="/" element={<MenuScreen updateIds={(playerId, gameId) => updateIds(playerId, gameId)} updateHostLobby={(playerId, noOfPlayers) => updateHostLobby(playerId, noOfPlayers)} />} />
+                        <Route path="/Lobby" element={<LobbyScreen players={players} noOfPlayers={noOfPlayers} gameId={gameId} socket={socket} host={host} />} />
+                        <Route path="/Game" element={<GameScreen cards={cards} loaded={loaded} playerId={playerId} players={players} socket={socket} />} />
                         <Route path="/Result" element={<ResultScreen />} />
                         <Route path="/*" element={<PageNotFoundScreen />} />
                     </Routes>

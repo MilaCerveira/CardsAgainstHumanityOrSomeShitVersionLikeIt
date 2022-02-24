@@ -1,11 +1,10 @@
 .popUp {
     z-index: 1; 
     width: 20vw; 
-    height: 20vh; 
-    position: block;
-    top:50%;
-    left: 50%;
-    
+    height: 10vh; 
+    position: absolute;
+    top:60%;
+    left: 40%;
     background: rgba(139, 156, 156, 0.04);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -15,5 +14,18 @@
   }
   
   .popUp-Content {
-    z-index: 1; 
+    position:absolute;
+    z-index: 1;
+    display:flex;
+    justify-content: center;
+    align-self: center;
+    /* position: absolute; */
+    top:30%;
+    left:8%;
+  }
+
+  .popUp-Content h2 {
+    font-size: 1.5vw;
+    text-align: center;
+    
   }
