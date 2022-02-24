@@ -34,6 +34,13 @@ io.on('connection', socket => {
         socket.to(room).emit('receive-navigation',navigation);
     }))
 
+
+
+    socket.on('updateBlackCards',(blackCard,blackDeck) => {
+        socket.to(room).emit('receiveUpdatedBlackCards', blackCard,blackDeck)
+    })
+
+
     socket.on('disconnect', function () {
         console.log(socket.nsp)
         if (socket.room ===room)

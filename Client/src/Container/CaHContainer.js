@@ -89,7 +89,7 @@ const CaHContainer = () => {
                     <Routes>
                         <Route path="/" element={<MenuScreen updateIds={(playerId,gameId) => updateIds(playerId,gameId)} updateHostLobby={(playerId,noOfPlayers) => updateHostLobby(playerId,noOfPlayers)}/>} />
                         <Route path="/Lobby" element={<LobbyScreen players = {players} noOfPlayers= {noOfPlayers} gameId = {gameId} socket={socket} host = {host}/>} />
-                        <Route path="/Game" element={<GameScreen cards={cards} loaded={loaded} playerId = {playerId} players = {players}/>} />
+                        <Route path="/Game" element={<GameScreen cards={cards} loaded={loaded} playerId = {playerId} players = {players} socket = {socket}/>} />
                         <Route path="/Result" element={<ResultScreen />} />
                         <Route path="/*" element={<PageNotFoundScreen />} />
                     </Routes>

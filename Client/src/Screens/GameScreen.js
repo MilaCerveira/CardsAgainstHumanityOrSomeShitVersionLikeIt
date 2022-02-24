@@ -11,11 +11,11 @@ import { useNavigate } from 'react-router-dom';
 import GameUI from "../components/gameUI";
 
 
-const GameScreen = ({ cards, loaded, playerId, players }) => {
+const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     const [hand, setHand] = useState();
     const [whiteDeck, setWhiteDeck] = useState();
     const [selectedBlackCard, setSelectedBlackCard] = useState();
-    const [selectedAnswerCard, setSelectedAnswerCard] = useState();
+    const [selectedAnswerCards, setSelectedAnswerCards] = useState([]);
     const [blackDeck, setBlackDeck] = useState();
     const [roundCounter, setRoundCounter] = useState(1);
     const [gamePhase, setGamePhase] = useState('drawBlackCardPhase');
@@ -71,6 +71,7 @@ const GameScreen = ({ cards, loaded, playerId, players }) => {
         let tempSelected = tempBlackCards.splice(0, 1);
         setSelectedBlackCard(tempSelected[0]);
         setBlackDeck(tempBlackCards);
+        socket.emit('updateBlackCards',tempSelected[0],tempBlackCards);
 
         if (hand.length >= 7) {
             setGamePhase('selectPhase');
@@ -80,13 +81,25 @@ const GameScreen = ({ cards, loaded, playerId, players }) => {
         }
     }
 
+
+    socket.on('receiveUpdatedBlackCards',(blackCard,blackDeck) => {
+        setBlackDeck(blackDeck);
+        setSelectedBlackCard(blackCard);
+
+        if (hand.length >= 7) {
+            setGamePhase('selectPhase');
+        }
+        else {
+            setGamePhase('drawPhase');
+        }
+    })
+
     const updateAnswers = (cardId, cardsCounter) => {
-
-
-
-        setSelectedAnswerCard(hand[cardId]);
+        let tempSelectedArray = selectedAnswerCards;
+        
         let tempHand = [...hand];
-        let TempCard = tempHand.splice(cardId, 1);
+        let tempCard = tempHand.splice(cardId, 1);
+        tempSelectedArray.push(tempCard[0]);
         setHand(tempHand);
 
         if (cardsCounter + 1 >= selectedBlackCard.pick) {
@@ -130,10 +143,10 @@ const GameScreen = ({ cards, loaded, playerId, players }) => {
                         <WhiteDeck gamePhase={gamePhase} whiteCards={cards[0].white} onWhiteCardSelect={() => addToHand()} />
                     </div>
                 )}
-                {selectedAnswerCard && (
+                {selectedAnswerCards[0] && (
                     <div id='answerCards'>
                         <p>Answers</p>
-                        <AnswerPile card={selectedAnswerCard} />
+                        <AnswerPile cards={selectedAnswerCards} />
                     </div>
                 )}
                 <div id='score'>
