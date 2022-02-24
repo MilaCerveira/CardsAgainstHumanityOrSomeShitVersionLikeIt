@@ -40,6 +40,10 @@ io.on('connection', socket => {
         socket.to(room).emit('receiveUpdatedBlackCards', blackCard,blackDeck)
     })
 
+    socket.on('updateWhiteCards',(whiteCards) => {
+        socket.to(room).emit('receiveUpdatedWhiteCards', whiteCards)
+    })
+
 
     socket.on('disconnect', function () {
         console.log(socket.nsp)

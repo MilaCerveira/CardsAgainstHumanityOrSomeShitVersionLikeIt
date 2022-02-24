@@ -86,12 +86,12 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         setBlackDeck(blackDeck);
         setSelectedBlackCard(blackCard);
 
-        if (hand.length >= 7) {
-            setGamePhase('selectPhase');
-        }
-        else {
-            setGamePhase('drawPhase');
-        }
+    })
+
+
+    socket.on('receiveUpdatedWhiteCards',(whiteCards) => {
+        setSelectedAnswerCards(whiteCards);
+
     })
 
     const updateAnswers = (cardId, cardsCounter) => {
@@ -101,6 +101,8 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         let tempCard = tempHand.splice(cardId, 1);
         tempSelectedArray.push(tempCard[0]);
         setHand(tempHand);
+        socket.emit('updateWhiteCards',tempSelectedArray);
+
 
         if (cardsCounter + 1 >= selectedBlackCard.pick) {
             setGamePhase('drawBlackCardPhase'); // this will change to judge phase when implemented
