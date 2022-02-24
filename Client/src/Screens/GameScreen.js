@@ -25,6 +25,8 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     const [winner, setWinner] = useState();
     const [scores, setScores] = useState([]);
     const [popUp, setPopUp] = useState(false);
+    const [drawPhase, setDrawPhase] = useState(false);
+    const [selectPhase, setSelectPhase] = useState(false);
     const [judgeModal, setJudgeModal] = useState(false);
 
     //  ['drawBlackCardPhase','drawPhase',selectPhase','judgePhase','rewardPhase', 'gameOverPhase']);
@@ -57,6 +59,9 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     }
 
     const addToHand = () => {
+        if(drawPhase) {
+            return;
+        }
         let tempHand = [...hand];
         let tempWhiteCards = [...whiteDeck];
         tempHand.push(tempWhiteCards.splice(0, 1)[0]);
@@ -64,7 +69,8 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         setWhiteDeck(tempWhiteCards);
         socket.emit('updateWhiteDeck',tempWhiteCards);
         if (tempHand.length >= 7) {
-            socket.emit('setPhase', 'selectPhase');
+            socket.emit('checkPhase', 'selectPhase');
+            setDrawPhase(true);
             return;
         }
     }
@@ -121,6 +127,9 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     })
 
     const updateAnswers = (cardId, cardsCounter) => {
+        if(selectPhase) {
+            return;
+        }
         let tempSelectedArray = selectedAnswerCards;
         
         let tempHand = [...hand];
@@ -131,7 +140,8 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
 
 
         if (cardsCounter + 1 >= selectedBlackCard.pick) {
-            socket.emit('setPhase', 'judgePhase'); // this will change to judge phase when implemented
+            socket.emit('checkPhase', 'drawBlackCardPhase'); // this will change to judge phase when implemented
+            setSelectPhase(true);
             let tempRound = roundCounter;
             setRoundCounter(tempRound += 1);
         }
