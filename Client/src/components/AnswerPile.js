@@ -5,9 +5,9 @@ import AnswerCard from './AnswerCard.js';
 const AnswerPile = ({cards}) => {
 
 
-const answers = cards.map((card,index) =>
+const answers = cards.map((answer,index) =>
     {
-        return <AnswerCard card = {card} key = {index}/>
+        return <AnswerCard answer = {answer} key = {index}/>
     })
 
     return (

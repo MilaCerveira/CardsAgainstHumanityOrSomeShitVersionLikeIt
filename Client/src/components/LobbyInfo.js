@@ -53,7 +53,6 @@ const LobbyInfo = ({players, socket, host}) => {
     }
 
     return (
-
         <>
             <div className='lobby-card'>
                 <div className='lobby-inner'>

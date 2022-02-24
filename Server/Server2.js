@@ -22,6 +22,7 @@ io.on('connection', socket => {
     socket.on('join-game', (playerId,gameRoom) => {
         socket.join(gameRoom);
         if(gameRoom===room) {
+
         players.push({
             name: playerId,
             id: socket.id,
@@ -41,10 +42,12 @@ io.on('connection', socket => {
     }))
 
     socket.on('createHand', () => {
+        if(deck[0]) {
         let hand = deck[0].white.splice(0, 7);
         socket.emit('receiveHand', hand);
         socket.nsp.to(room).emit('sendWhiteDeck',deck[0].white);
         console.log(deck[0].white.length);
+        }
     })
 
     socket.on('updateBlackCards',(blackCard,blackDeck) => {
