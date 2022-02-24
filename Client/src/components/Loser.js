@@ -1,12 +1,20 @@
+import { useEffect, useState } from "react";
 import lovetrash  from '../assets/lovetrash.mp3';
 import './Loser.css';
 import { motion} from "framer-motion";
 const Loser = () => {
+  const [playMusic, setPlayMusic] = useState(true);
     
-    const play = () => {
-        const trash = new Audio(lovetrash);
-        trash.play();    
-    };
+  const play = () => {
+    const trash = new Audio(lovetrash);
+    trash.play(); 
+    }
+      
+
+// const handlePlay = () => {
+//   playMusic ? play() : setPlayMusic(false)
+// }
+
 
     const emoArray = [];
     for (let i = 0; i <= 100 ; i++) {
@@ -97,7 +105,7 @@ const Loser = () => {
      {setEmoji2}
      
      </motion.div>
-    <h1 class="neonLoser"onClick={play}>Loser</h1>
+    <h1 className="neonLoser"onClick={play}>Loser</h1>
     </div>
   )
 }
