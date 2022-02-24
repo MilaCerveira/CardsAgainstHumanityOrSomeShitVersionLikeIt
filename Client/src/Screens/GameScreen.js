@@ -54,11 +54,8 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     }, [cards[0]])
 
     const CreateHand = () => {
-        // let tempCard = arrayShuffle(cards[0].white);
         socket.emit('createHand');
-        // setHand(tempCard.splice(0, 7));
-        // setWhiteDeck(tempCard);
-        // socket.emit('updateWhiteDeck',tempCard);
+    
     }
 
     const addToHand = () => {
@@ -94,7 +91,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     })
 
     socket.on('sendWhiteDeck', (whiteDeck) => {
-        setWhiteDeck(whiteDeck);
+        setWhiteDeck(whiteDeck)
     })
 
 
@@ -119,7 +116,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         
         let tempHand = [...hand];
         let tempCard = tempHand.splice(cardId, 1);
-        tempSelectedArray.push(tempCard[0]);
+        tempSelectedArray.push({name: playerId,card:tempCard[0]});
         setHand(tempHand);
         socket.emit('updateWhiteCards',tempSelectedArray);
 

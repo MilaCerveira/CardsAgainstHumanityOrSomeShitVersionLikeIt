@@ -1,11 +1,11 @@
 import './AnswerCard.css';
 import cad from '../assets/cad.png';
 
-const AnswerCard = ({card}) => {
+const AnswerCard = ({answer}) => {
 
     return (
                 <div className='answer-card' >
-                    <h2 className='answer-card-text'>{card.text}</h2>
+                    <h2 className='answer-card-text'>{answer.card.text}</h2>
                     <div id="bottom">
                         <img className='bottom-img' src={cad} alt='logo'/>
                         Cards Against Humanity
