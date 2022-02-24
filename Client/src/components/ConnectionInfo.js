@@ -1,7 +1,10 @@
 import '../components/ConnectionInfo.css';
 import cad from '../assets/cad.png';
 
-const ConnectionInfo = () => {
+const ConnectionInfo = ({gameId}) => {
+
+
+  
 
     return (
 
@@ -15,7 +18,8 @@ const ConnectionInfo = () => {
                             <p>Awaiting Players...</p>
 
                             <div id='game-id'>
-                                <h3>Game Id: 112233</h3>
+                                <h3> Game Id:</h3>
+                                <input defaultValue={gameId} readOnly/>
                                 <p>Other players should enter this ID to join the lobby</p>
                             </div>
 

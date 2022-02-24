@@ -5,7 +5,7 @@ import '../Screens/LobbyScreen.css'
 
 
 
-const LobbyScreen = ({noOfPlayers, gameId,playerId}) => {
+const LobbyScreen = ({noOfPlayers, gameId,playerId, players}) => {
 
     return (
         <>
@@ -16,11 +16,11 @@ const LobbyScreen = ({noOfPlayers, gameId,playerId}) => {
             <div id='lobby'>
 
                 <div id='connection-info'>
-                    <ConnectionInfo />
+                    <ConnectionInfo gameId = {gameId} />
                 </div>
 
                 <div id='lobby-info'>
-                    <LobbyInfo playerId = {playerId} />
+                    <LobbyInfo playerId = {playerId} players ={players}/>
                 </div>
 
             </div>

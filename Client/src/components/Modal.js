@@ -97,7 +97,7 @@ const Modal = ({ updateIds, playerType, setModalVisible, updateHostLobby }) => {
                         <label>
                             <div className='form-item'>
                                 <p> Game Id:</p>
-                                <input type="number" placeholder="enter game Id" required onChange={handleGameIdChange} />
+                                <input type="text" placeholder="enter game Id" required onChange={handleGameIdChange} />
                             </div>
                         </label>
 
