@@ -33,23 +33,87 @@
     /* justify-content: space-evenly; */
   }
 
-  .player1 {
+  .cards1 {
     display:flex;
     margin-right:4vw;
+    margin-left:3vw;
+    margin-bottom:1.5vh;
   }
  
 
-  .player2 {
+  .cards2 {
     display:flex;
     margin-right:4vw;
+    margin-left:3vw;
+    margin-bottom:1.5vh;
   }
 
-  .player3 {
+  .cards3 {
     display:flex;
     margin-right:4vw;
+    margin-left:3vw;
+    margin-bottom:1.5vh;
   }
 
-  .player4 {
+  .cards4 {
     display:flex;
     margin-right:4vw;
+    margin-left:3vw;
+    margin-bottom:1.5vh;
+   
+  }
+
+
+  #player1 {
+   width:4vw;
+   height:1.5vw;
+   font-size:1vw;
+  }
+ 
+
+  #player2 {
+    width:4vw;
+    height:1.5vw;
+    font-size:1vw;
+  }
+
+  #player3 {
+    width:4vw;
+    height:1.5vw;
+    font-size:1vw;
+  }
+
+  #player4 {
+    width:4vw;
+    height:1.5vw;
+    font-size:1vw;
+  }
+
+
+  .player1{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+  }
+
+  .player2{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+  }
+
+  .player3{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+  }
+
+  .player4{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
   }

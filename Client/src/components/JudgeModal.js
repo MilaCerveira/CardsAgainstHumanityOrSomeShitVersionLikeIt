@@ -16,19 +16,29 @@ const JudgeModal = ({ selectedBlackCard, selectedAnswerCards, players }) => {
     //     return <AnswerCard answer={answer} key={index} />
     // })
 
+    const handleVote = (event) => {
+        console.log('voted');
+    }
+
+
+
     const answers = playersFilter.map((player, index) => {
         let tempClass = `player${index + 1}`
+        let tempCards = `cards${index + 1}`
         return (
-            <div className = {tempClass} key = {index}>
-                {player.map((card,index) => {
-                   
-                    return (
-                        <div key={index}>
-                            <AnswerCard answer={card}/>
-                        </div>
+            <div className={tempClass} key={index}>
+               
+                <div className = {tempCards}>
+                    {player.map((card, index) => {
 
-                    )
-                })}
+                        return (
+                            <div key={index}>
+                                <AnswerCard answer={card} />
+                            </div>
+                        )
+                    })}
+                </div>
+                <button id={tempClass} onClick={handleVote}>Vote!</button>
             </div>
         )
     })
