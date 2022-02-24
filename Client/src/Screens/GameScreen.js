@@ -20,7 +20,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     const [blackDeck, setBlackDeck] = useState();
     const [roundCounter, setRoundCounter] = useState(1);
     const [gamePhase, setGamePhase] = useState('drawBlackCardPhase');
-    const [judge, setJudge] = useState(playerId);
+    const [judge, setJudge] = useState();
     const [winner, setWinner] = useState();
     const [scores, setScores] = useState([]);
     const [popUp, setPopUp] = useState(false);
@@ -38,8 +38,6 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
 
     }, [players])
 
-
-
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -48,12 +46,12 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
             cards[0].white=arrayShuffle(tempCard);
             CreateHand();
             setBlackDeck(arrayShuffle(cards[0].black));
+            socket.emit('setJudge');
         }
     }, [cards[0]])
 
     const CreateHand = () => {
         socket.emit('createHand');
-    
     }
 
     const addToHand = () => {
@@ -70,6 +68,10 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     }
 
     const CreateBlackCard = () => {
+        if(judge != playerId) {
+            return;
+        }
+
         let tempBlackCards = [...blackDeck];
         let tempSelected = tempBlackCards.splice(0, 1);
         setSelectedBlackCard(tempSelected[0]);
@@ -82,6 +84,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         else {
             setGamePhase('drawPhase');
         }
+    
     }
 
     socket.on('receiveHand', (hand) => {
@@ -92,6 +95,9 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         setWhiteDeck(whiteDeck)
     })
 
+    socket.on('sendJudge', (judge) => {
+        setJudge()
+    } )
 
     socket.on('receiveUpdatedBlackCards',(blackCard,blackDeck) => {
         setBlackDeck(blackDeck);

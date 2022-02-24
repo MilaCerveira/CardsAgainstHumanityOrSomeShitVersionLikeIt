@@ -1,5 +1,5 @@
 let players = [];
-judge = players[0];
+let judge = 0;
 let room;
 let deck = [];
 
@@ -63,6 +63,9 @@ io.on('connection', socket => {
     //    socket.to(room).emit('receiveDeck', cards)
     // })
 
+    socket.on('setJudge', () => {
+        socket.nsp.to(room).emit('sendJudge',players[judge]);
+    })
 
     socket.on('setDeck', cards => {
         deck = cards;
