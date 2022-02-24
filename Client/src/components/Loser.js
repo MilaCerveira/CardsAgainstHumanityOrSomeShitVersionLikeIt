@@ -73,7 +73,7 @@ const Loser = () => {
               repeat: Infinity,
               repeatDelay: 2
             }}
-            whileHover={{ scale: 35 }}
+            whileHover={{ scale: 5 }}
             whileTap={{ rotate: [0, 5, -5, 5, 0] }}
           >
           

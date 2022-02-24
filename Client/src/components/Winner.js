@@ -15,6 +15,7 @@ const Winner = () => {
       winEmoArray.push ('🥇')
       winEmoArray.push('👑')
       
+      
     }
 
     const winEmoArray2 = [];
@@ -24,6 +25,7 @@ const Winner = () => {
         winEmoArray2.push('💸')
         winEmoArray2.push ('🥇')
         winEmoArray2.push('👑')
+        
         
     }
    const setWinEmoji = winEmoArray.map((emo, index) => {
@@ -43,7 +45,7 @@ const Winner = () => {
               repeat: Infinity,
               repeatDelay: 2
             }}
-            whileHover={{ scale: 35 }}
+            whileHover={{ scale: 5 }}
             whileTap={{ rotate: [0, 5, -5, 5, 0] }}
           >
           
