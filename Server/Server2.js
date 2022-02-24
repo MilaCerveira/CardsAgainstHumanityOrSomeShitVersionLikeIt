@@ -1,4 +1,5 @@
 let players = [];
+judge = players[0];
 let room;
 let deck = [];
 
@@ -35,12 +36,16 @@ io.on('connection', socket => {
         socket.to(room).emit('receiveUpdatedWhiteDeck', whiteDeck);
     })
 
-
     socket.on('navigate', (navigation => {
         socket.to(room).emit('receive-navigation',navigation);
     }))
 
-
+    socket.on('createHand', () => {
+        let hand = deck[0].white.splice(0, 7);
+        socket.emit('receiveHand', hand);
+        socket.nsp.to(room).emit('sendWhiteDeck',deck[0].white);
+        console.log(deck[0].white.length);
+    })
 
     socket.on('updateBlackCards',(blackCard,blackDeck) => {
         socket.to(room).emit('receiveUpdatedBlackCards', blackCard,blackDeck)
@@ -58,9 +63,6 @@ io.on('connection', socket => {
 
     socket.on('setDeck', cards => {
         deck = cards;
-        console.log(`deck = ${cards}`);
-       
-        
     })
 
 

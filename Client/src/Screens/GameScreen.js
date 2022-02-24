@@ -44,16 +44,19 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
 
     useEffect(() => {
         if (loaded && cards[0]) {
+            let tempCard = arrayShuffle(cards[0].white);
+            cards[0].white=arrayShuffle(tempCard);
             CreateHand();
             setBlackDeck(arrayShuffle(cards[0].black));
         }
     }, [cards[0]])
 
     const CreateHand = () => {
-        let tempCard = arrayShuffle(cards[0].white);
-        setHand(tempCard.splice(0, 7));
-        setWhiteDeck(tempCard);
-        socket.emit('updateWhiteDeck',tempCard);
+        // let tempCard = arrayShuffle(cards[0].white);
+        socket.emit('createHand');
+        // setHand(tempCard.splice(0, 7));
+        // setWhiteDeck(tempCard);
+        // socket.emit('updateWhiteDeck',tempCard);
     }
 
     const addToHand = () => {
@@ -83,6 +86,14 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
             setGamePhase('drawPhase');
         }
     }
+
+    socket.on('receiveHand', (hand) => {
+        setHand(hand);
+    })
+
+    socket.on('sendWhiteDeck', (whiteDeck) => {
+        setWhiteDeck(whiteDeck);
+    })
 
 
     socket.on('receiveUpdatedBlackCards',(blackCard,blackDeck) => {
