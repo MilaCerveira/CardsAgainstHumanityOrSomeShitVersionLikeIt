@@ -1,17 +1,26 @@
 import { useNavigate } from 'react-router-dom';
 import cad from '../assets/cad.png';
 import '../components/LobbyInfo.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
-const LobbyInfo = ({playerId,players}) => {
+const LobbyInfo = ({players, socket, host}) => {
 
     let connectedPlayers;
 
     const [deckChoice, setDeckChoice] = useState();
     const navigate = useNavigate();
 
+
+
+    useEffect(() => {
+        if(host) {
+            document.getElementById('deck-form').style.visibility='visible';
+        }
+    }, [host])
+
     const handleNavigate = (event) => {
+
         event.preventDefault();
         // if(players.length < 3)
         // {
@@ -21,8 +30,14 @@ const LobbyInfo = ({playerId,players}) => {
         if (!deckChoice) {
             return
         }
+        socket.emit('navigate', '/Game');
         navigate('/Game');
     }
+
+
+    socket.on('receive-navigation', navigation => {
+        navigate(navigation);
+    })
 
     const handleDeckChoice = (event) => {
         setDeckChoice(event.target.value);
@@ -30,7 +45,6 @@ const LobbyInfo = ({playerId,players}) => {
 
 
     if(players) {
-        console.log(players);
         connectedPlayers = players.map((player,index) => {
             return (
                 <h3 key = {index}>Player {index+1}: {player.name} ✅</h3>
@@ -47,7 +61,7 @@ const LobbyInfo = ({playerId,players}) => {
                         <h2>Connected Players {players.length}</h2>
                         <div id='lobby-details'>
                             {connectedPlayers}
-                            <form>
+                            <form id = 'deck-form'>
                                 <select defaultValue={''} name='deck' onChange={handleDeckChoice} required>
                                     <option disabled value=''  >Select Deck</option>
                                     <option value='SFW'>SFW Deck</option>

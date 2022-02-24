@@ -24,6 +24,7 @@ const CaHContainer = () => {
     const [loaded, setLoaded] = useState(false);
     const [noOfPlayers,setNoOfPlayers] = useState(); 
     const [socket, setSocket] = useState();
+    const [host, setHost] = useState(false);
 
 
     useEffect(() => {
@@ -64,14 +65,12 @@ const CaHContainer = () => {
         setGameId('test');
         s.emit('set-room','test');
         s.emit('join-game', playerId, 'test');
-
-       
+        setHost(true);
        
     }
 
     if(socket) {
     socket.on('receive-players', playerList => {
-        console.log(playerList);
         let tempList = playerList;
         setPlayers(tempList);
     })
@@ -89,7 +88,7 @@ const CaHContainer = () => {
                 <Router>
                     <Routes>
                         <Route path="/" element={<MenuScreen updateIds={(playerId,gameId) => updateIds(playerId,gameId)} updateHostLobby={(playerId,noOfPlayers) => updateHostLobby(playerId,noOfPlayers)}/>} />
-                        <Route path="/Lobby" element={<LobbyScreen players = {players} noOfPlayers= {noOfPlayers} gameId = {gameId} playerId = {playerId}/>} />
+                        <Route path="/Lobby" element={<LobbyScreen players = {players} noOfPlayers= {noOfPlayers} gameId = {gameId} socket={socket} host = {host}/>} />
                         <Route path="/Game" element={<GameScreen cards={cards} loaded={loaded} playerId = {playerId} players = {players}/>} />
                         <Route path="/Result" element={<ResultScreen />} />
                         <Route path="/*" element={<PageNotFoundScreen />} />

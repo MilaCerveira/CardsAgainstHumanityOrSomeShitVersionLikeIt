@@ -60,7 +60,7 @@
     left:2px;                         
   }
 
-  button {
+  #start-game {
     background-color: whitesmoke;
     cursor: pointer;
     border: 1px solid #266DB6;
@@ -73,6 +73,10 @@
     padding: 1vh 1.5vh;
     margin-top: 1vh;
   }
+
+#deck-form {
+  visibility: hidden;
+}
 
 form {
     padding:0;

@@ -4,9 +4,6 @@ import { useEffect, useState } from "react";
 import BlackCard from "../components/BlackCard";
 import BlackDeck from '../components/BlackDeck';
 import WhiteDeck from '../components/WhiteDeck';
-import HandTop from "../components/HandTop";
-import HandLeft from "../components/HandLeft";
-import HandRight from "../components/HandRight";
 import '../Screens/GameScreen.css';
 import Timer from "../components/Timer";
 import AnswerPile from "../components/AnswerPile";
@@ -120,17 +117,7 @@ const GameScreen = ({ cards, loaded, playerId, players }) => {
                         <Slider hand={hand} gamePhase={gamePhase} selectedBlackCard={selectedBlackCard} updateAnswers={(cardId, cardsCounter) => updateAnswers(cardId, cardsCounter)} />
                     </div>
                 )}
-                <div id='hand2'>
-                    {/* <HandLeft /> */}
-                </div>
-
-                <div id='hand3'>
-                    {/* <HandTop /> */}
-                </div>
-
-                <div id='hand4'>
-                    {/* <HandRight /> */}
-                </div>
+        
                 {cards[0] && (
                     <div id='blackDeck'>
                         <p>Black Deck</p>

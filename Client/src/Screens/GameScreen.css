@@ -5,9 +5,9 @@
     width:inherit;
     display:grid;
 
-    grid-template-areas: '. hand3 hand3 score'
-                         'hand2 bCard bDeck hand4'
-                         'hand2 wCard wDeck hand4'
+    grid-template-areas: '. . . score'
+                         '. bCard bDeck .'
+                         '. wCard wDeck .'
                          '. hand1 hand1 .';
 
 

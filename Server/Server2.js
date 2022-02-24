@@ -29,6 +29,11 @@ io.on('connection', socket => {
     socket.nsp.to(room).emit('receive-players',players);
     })
 
+
+    socket.on('navigate', (navigation => {
+        socket.to(room).emit('receive-navigation',navigation);
+    }))
+
     socket.on('disconnect', function () {
         console.log(socket.nsp)
         if (socket.room ===room)
