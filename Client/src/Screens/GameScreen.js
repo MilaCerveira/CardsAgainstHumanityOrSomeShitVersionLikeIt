@@ -10,6 +10,7 @@ import AnswerPile from "../components/AnswerPile";
 import { useNavigate } from 'react-router-dom';
 import GameUI from "../components/gameUI";
 import PopUp from '../components/PopUp';
+import JudgeModal from "../components/JudgeModal";
 
 
 const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
@@ -24,6 +25,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     const [winner, setWinner] = useState();
     const [scores, setScores] = useState([]);
     const [popUp, setPopUp] = useState(false);
+    const [judgeModal, setJudgeModal] = useState(false);
 
     //  ['drawBlackCardPhase','drawPhase',selectPhase','judgePhase','rewardPhase', 'gameOverPhase']);
     useEffect(() => {
@@ -145,7 +147,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
 
     return (
         <>
-         
+         <JudgeModal/>
             <div id="gameScreen">
            
                 {selectedBlackCard && (
