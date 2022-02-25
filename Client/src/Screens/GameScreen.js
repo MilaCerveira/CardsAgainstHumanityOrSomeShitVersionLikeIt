@@ -130,6 +130,11 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         setScores(scores);
     })
 
+    socket.on('receivePhases', (draw,select)=> {
+        setDrawPhase(draw);
+        setSelectPhase(select);
+    })
+
     const updateAnswers = (cardId, cardsCounter) => {
         if (selectPhase) {
             return;
@@ -141,9 +146,9 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         tempSelectedArray.push({ name: playerId, card: tempCard[0] });
         setHand(tempHand);
         socket.emit('updateWhiteCards', tempSelectedArray);
-        
+
         if (cardsCounter + 1 >= selectedBlackCard.pick) {
-            socket.emit('checkPhase', 'judgePhase'); 
+            socket.emit('checkPhase', 'judgePhase');
             setSelectPhase(true);
 
         }
@@ -176,7 +181,16 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         socket.emit('updateScores', tempScores);
 
         resetRound();
+        if (tempScores[tempIndex].value >= 5) {
+            setWinner(tempScores[tempIndex].playerName);
+            socket.emit('setWinner', tempScores[tempIndex].playerName);
+            socket.emit('setPhase', 'gameOverPhase');
+            console.log(`winner is: ${tempScores[tempIndex].playerName}`)
+        }
+        else {
 
+            socket.emit('setPhase', 'drawBlackCardPhase');
+        }
 
     }
 
@@ -187,11 +201,14 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         setSelectedBlackCard(undefined);
         let tempRound = roundCounter;
         setRoundCounter(tempRound += 1);
+        setDrawPhase(false);
+        setSelectPhase(false);
+        socket.emit('updatePhases', false, false);
         socket.emit('updateWhiteCards', []);
         socket.emit('updateBlackCards', undefined, blackDeck);
         socket.emit('updateJudge');
-        socket.emit('setPhase', 'drawBlackCardPhase');
-    
+
+
 
     }
 

@@ -12,10 +12,6 @@ const JudgeModal = ({ selectedBlackCard, selectedAnswerCards, players, updateVot
         })
     })
 
-    // const answers = selectedAnswerCards.map((answer, index) => {
-    //     return <AnswerCard answer={answer} key={index} />
-    // })
-
     const handleVote = (event) => {
         event.preventDefault();
         if(playerId!==judge){
@@ -23,11 +19,10 @@ const JudgeModal = ({ selectedBlackCard, selectedAnswerCards, players, updateVot
         }
        
         let tempString = event.target.id.replace(/[^0-9\.]+/g, "")
-        console.dir(players[tempString-1].name);
-        updateVote(players[tempString-1].name);
+        console.dir(tempPlayers[tempString-1].name);
+        updateVote(tempPlayers[tempString-1].name);
     }
 
-    // change so judge chooses winner only
 
     const answers = playersFilter.map((player, index) => {
         let tempClass = `player${index + 1}`
