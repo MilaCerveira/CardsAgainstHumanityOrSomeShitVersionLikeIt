@@ -75,8 +75,8 @@ io.on('connection', socket => {
         socket.nsp.to(room).emit('receivePhase', phase);
     })
 
-    socket.on('updatePhases', (draw,select) => {
-        socket.to(room).emit('receivePhases', draw,select);
+    socket.on('updatePhases', (draw, select) => {
+        socket.to(room).emit('receivePhases', draw, select);
     })
 
     socket.on('checkPhase', phase => {
@@ -87,12 +87,20 @@ io.on('connection', socket => {
         }
     })
 
+    socket.on('checkSelectPhase', phase => {
+        phases.push(true);
+        if (phases.length >= players.length - 1) {
+            socket.nsp.to(room).emit('receivePhase', phase);
+            phases = [];
+        }
+    })
+
     socket.on('updateScores', scores => {
         socket.to(room).emit('receiveScores', scores);
     })
     socket.on('updateJudge', () => {
-        judgeIndex+=1;
-        if(judgeIndex >= players.length) {
+        judgeIndex += 1;
+        if (judgeIndex >= players.length) {
             judgeIndex = 0;
         }
         socket.nsp.to(room).emit('sendJudge', players[judgeIndex]);

@@ -6,7 +6,7 @@ import WhiteCardSubmit from './WhiteCardSubmit';
 
 
 
-const WhiteCard = ({ card, index, updateSlider, gamePhase, updatePopUp }) => {
+const WhiteCard = ({ card, index, updateSlider, gamePhase, updatePopUp, playerId, judge }) => {
     const [selected, setSelected] = useState(false);
     
 
@@ -20,7 +20,9 @@ const WhiteCard = ({ card, index, updateSlider, gamePhase, updatePopUp }) => {
 
     const submitAnswer = (event) => {
         event.preventDefault();
-        if (gamePhase != 'selectPhase') {
+        console.log(playerId);
+        console.log(judge);
+        if (gamePhase != 'selectPhase' || playerId === judge) {
             updatePopUp();
             return;
         }

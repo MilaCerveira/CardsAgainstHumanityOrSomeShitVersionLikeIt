@@ -151,7 +151,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket, setWinnerId }) =
         socket.emit('updateWhiteCards', tempSelectedArray);
 
         if (cardsCounter + 1 >= selectedBlackCard.pick) {
-            socket.emit('checkPhase', 'judgePhase');
+            socket.emit('checkSelectPhase', 'judgePhase');
             setSelectPhase(true);
 
         }
@@ -231,12 +231,12 @@ const GameScreen = ({ cards, loaded, playerId, players, socket, setWinnerId }) =
                 )}
                 {hand && gamePhase !== 'judgePhase' && (
                     <div id='hand1'>
-                        <Slider hand={hand} gamePhase={gamePhase} selectedBlackCard={selectedBlackCard} updateAnswers={(cardId, cardsCounter) => updateAnswers(cardId, cardsCounter)} updatePopUp={() => handlePopUp()} />
+                        <Slider hand={hand} gamePhase={gamePhase} selectedBlackCard={selectedBlackCard} updateAnswers={(cardId, cardsCounter) => updateAnswers(cardId, cardsCounter)} updatePopUp={() => handlePopUp()} judge = {judge} playerId = {playerId}/>
                     </div>
                 )}
 
                 {popUp &&
-                    <PopUp text='it is not the select phase' />}
+                    <PopUp text='it is not your turn to play a card' />}
 
                 {cards[0] && (
                     <div id='blackDeck'>

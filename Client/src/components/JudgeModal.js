@@ -24,23 +24,24 @@ const JudgeModal = ({ selectedBlackCard, selectedAnswerCards, players, updateVot
     }
 
 
-    const answers = playersFilter.map((player, index) => {
-        let tempClass = `player${index + 1}`
-        let tempCards = `cards${index + 1}`
+    const answers = playersFilter.map((player, index1) => {
+        let tempClass = `player${index1 + 1}`
+        let tempCards = `cards${index1 + 1}`
+        console.log(tempPlayers);
         return (
-            <div className={tempClass} key={index}>
+            <div className={tempClass} key={index1}>
                
                 <div className = {tempCards}>
-                    {player.map((card, index) => {
+                    {player.map((card, index2) => {
 
                         return (
-                            <div key={index}>
+                            <div key={index2}>
                                 <AnswerCard answer={card} />
                             </div>
                         )
                     })}
                 </div>
-                {playerId ===judge && (
+                {playerId ===judge && tempPlayers[index1].name!=judge &&(
                 <button id={tempClass} onClick={handleVote}>Vote!</button>
                 )}
             </div>

@@ -3,7 +3,7 @@ import { motion, useElementScroll, useTransform } from "framer-motion";
 import './Slider.css';
 import WhiteCard from "./WhiteCard";
 
-const Slider = ({ hand, updateAnswers, gamePhase, updatePopUp }) => {
+const Slider = ({ hand, updateAnswers, gamePhase, updatePopUp, playerId,judge }) => {
 
     const [cardsCounter, setCardsCounter] = useState(0);
     
@@ -18,7 +18,6 @@ const Slider = ({ hand, updateAnswers, gamePhase, updatePopUp }) => {
     
 
     const updateSlider = (cardId) => {
-            
             updateAnswers(cardId,cardsCounter);
             let tempCounter = cardsCounter;
             tempCounter+=1;
@@ -30,7 +29,7 @@ const Slider = ({ hand, updateAnswers, gamePhase, updatePopUp }) => {
     if (hand) {
     setHand = hand.map((card, index) => {
         return (
-                <WhiteCard card={card} gamePhase = {gamePhase} index={index} key = {index} updateSlider={(cardId) => updateSlider(cardId)} updatePopUp = {updatePopUp}/>
+                <WhiteCard card={card} gamePhase = {gamePhase} playerId = {playerId} judge = {judge} index={index} key = {index} updateSlider={(cardId) => updateSlider(cardId)} updatePopUp = {updatePopUp}/>
         );
     })
 }
