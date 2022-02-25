@@ -258,7 +258,6 @@ const GameScreen = ({ cards, loaded, playerId, players, socket, setWinnerId }) =
                 )}
                 <div id='score'>
                     <GameUI roundCounter={roundCounter} gamePhase={gamePhase} scores={scores} judge={judge} />
-                    <button onClick={goToResults}>Go To Results</button>
                 </div>
 
 
