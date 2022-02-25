@@ -38,7 +38,7 @@ const CaHContainer = () => {
 
     const FetchCards = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/CaH/`)
+            const response = await fetch(`http://localhost:5000/api/sfwCards`)
             const data = await response.json();
             await setCards(data);
             await setLoaded(true);

@@ -11,9 +11,14 @@ const createRouter = require('./Helpers/CreateRouter.js');
 MongoClient.connect('mongodb://localhost:27017', { useUnifiedTopology: true })
   .then((client) => {
     const db = client.db('CaH');
-    const cardsCollection = db.collection('cards');
-    const cardsRouter = createRouter(cardsCollection);
-    app.use('/api/CaH', cardsRouter);
+
+    const nsfwCardsCollection = db.collection('nsfwcards');
+    const nsfwCardsRouter = createRouter(nsfwCardsCollection);
+    app.use('/api/nsfwCards', nsfwCardsRouter);
+
+    const sfwCardsCollection = db.collection('sfwcards');
+    const sfwCardsRouter = createRouter(sfwCardsCollection);
+    app.use('/api/sfwCards', sfwCardsRouter);
   })
   .catch(console.err);
 
