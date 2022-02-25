@@ -13,7 +13,7 @@ import PopUp from '../components/PopUp';
 import JudgeModal from "../components/JudgeModal";
 
 
-const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
+const GameScreen = ({ cards, loaded, playerId, players, socket, setWinnerId }) => {
     const [hand, setHand] = useState();
     const [whiteDeck, setWhiteDeck] = useState();
     const [selectedBlackCard, setSelectedBlackCard] = useState();
@@ -46,13 +46,11 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
 
     useEffect(() => {
         if (loaded && cards[0]) {
-            let tempCard = arrayShuffle(cards[0].white);
-            cards[0].white = arrayShuffle(tempCard);
             CreateHand();
-            setBlackDeck(arrayShuffle(cards[0].black));
+            setBlackDeck(cards[0].black);
             socket.emit('setJudge');
         }
-    }, [cards[0]])
+    }, [cards[0]]) //cards[0]
 
     const CreateHand = () => {
         socket.emit('createHand');
@@ -135,6 +133,11 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         setSelectPhase(select);
     })
 
+    socket.on('sendWinner', winner => {
+        setWinnerId(winner);
+        navigate('/Result');
+    })
+
     const updateAnswers = (cardId, cardsCounter) => {
         if (selectPhase) {
             return;
@@ -175,17 +178,17 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         })
 
         tempScores[tempIndex].value += 1;
-        console.log(tempScores);
         socket.emit('setPhase', 'rewardPhase');
 
         socket.emit('updateScores', tempScores);
 
         resetRound();
         if (tempScores[tempIndex].value >= 5) {
-            setWinner(tempScores[tempIndex].playerName);
+            setWinnerId(tempScores[tempIndex].playerName);
             socket.emit('setWinner', tempScores[tempIndex].playerName);
             socket.emit('setPhase', 'gameOverPhase');
-            console.log(`winner is: ${tempScores[tempIndex].playerName}`)
+            console.log(`winner is: ${tempScores[tempIndex].playerName}`);
+            navigate('/Result');
         }
         else {
 
@@ -226,7 +229,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
                         {/* <Timer /> */}
                     </div>
                 )}
-                {hand && (
+                {hand && gamePhase !== 'judgePhase' && (
                     <div id='hand1'>
                         <Slider hand={hand} gamePhase={gamePhase} selectedBlackCard={selectedBlackCard} updateAnswers={(cardId, cardsCounter) => updateAnswers(cardId, cardsCounter)} updatePopUp={() => handlePopUp()} />
                     </div>

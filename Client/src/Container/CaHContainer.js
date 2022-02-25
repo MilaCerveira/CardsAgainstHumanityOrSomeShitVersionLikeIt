@@ -7,9 +7,7 @@ import LobbyScreen from "../Screens/LobbyScreen";
 import ResultScreen from '../Screens/ResultScreen';
 import PageNotFoundScreen from '../Screens/PageNotFound';
 import '../Container/CaHContainer.css';
-import Loading from "../components/Loading";
-import Overlay from "../components/Overlay";
-
+import arrayShuffle from 'array-shuffle';
 
 
 const CaHContainer = () => {
@@ -24,13 +22,19 @@ const CaHContainer = () => {
     const [loaded, setLoaded] = useState(false);
     const [noOfPlayers, setNoOfPlayers] = useState();
     const [socket, setSocket] = useState();
-    const [host, setHost] = useState(false);
+    const [host, setHost] = useState(false); 
+    const [winnerId,setWinnerId] = useState();
 
     useEffect(() => {
-        if(socket) {
-       socket.emit('setDeck', cards);
+        if(socket && host) {
+        let tempCards = cards;
+        tempCards[0].white = arrayShuffle(tempCards[0].white);
+        tempCards[0].black = arrayShuffle(tempCards[0].black);
+        console.log(tempCards);
+        socket.emit('setDeck', tempCards);
+        setCards(tempCards);
         }
-    }, [cards])
+    }, [cards[0]])
 
     const FetchCards = async () => {
         try {
@@ -63,10 +67,9 @@ const CaHContainer = () => {
         setSocket(s);
         setGameId('test');
         await s.emit('set-room', 'test');
-        
         setHost(true);
         await FetchCards();
-        await s.emit('join-game', playerId, 'test');
+        s.emit('join-game', playerId, 'test');
        
 
     }
@@ -78,6 +81,7 @@ const CaHContainer = () => {
         })
 
         socket.on('receiveDeck', cards => {
+            console.log(cards);
             setCards(cards);
             setLoaded(true);
         })
@@ -97,8 +101,8 @@ const CaHContainer = () => {
                     <Routes>
                         <Route path="/" element={<MenuScreen updateIds={(playerId, gameId) => updateIds(playerId, gameId)} updateHostLobby={(playerId, noOfPlayers) => updateHostLobby(playerId, noOfPlayers)} />} />
                         <Route path="/Lobby" element={<LobbyScreen players={players} noOfPlayers={noOfPlayers} gameId={gameId} socket={socket} host={host} />} />
-                        <Route path="/Game" element={<GameScreen cards={cards} loaded={loaded} playerId={playerId} players={players} socket={socket} />} />
-                        <Route path="/Result" element={<ResultScreen />} />
+                        <Route path="/Game" element={<GameScreen cards={cards} loaded={loaded} playerId={playerId} players={players} socket={socket} setWinnerId={(winnerId) => setWinnerId(winnerId)}/>} />
+                        <Route path="/Result" element={<ResultScreen playerId = {playerId} winnerId ={winnerId}/>} />
                         <Route path="/*" element={<PageNotFoundScreen />} />
                     </Routes>
                 </Router>

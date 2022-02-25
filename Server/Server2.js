@@ -33,7 +33,7 @@ io.on('connection', socket => {
 
         }
         socket.nsp.to(room).emit('receive-players', players);
-        socket.nsp.to(room).emit('receiveDeck', deck);
+        socket.emit('receiveDeck', deck);
     })
 
     socket.on('updateWhiteDeck', whiteDeck => {
@@ -67,6 +67,8 @@ io.on('connection', socket => {
 
     socket.on('setDeck', cards => {
         deck = cards;
+        console.log(cards[0].white[0]);
+        console.log(cards[0].black[0]);
     })
 
     socket.on('setPhase', phase => {
