@@ -110,4 +110,4 @@ const Loser = () => {
   )
 }
 
-export default Loser
+export default Loser;

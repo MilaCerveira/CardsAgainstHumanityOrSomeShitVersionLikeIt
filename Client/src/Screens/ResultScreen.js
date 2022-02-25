@@ -5,7 +5,7 @@ const ResultScreen = ({playerId, winnerId}) => {
 
     return(
         <>
-        {playerId != winnerId & (
+        {playerId !== winnerId && (
             <Loser/>
         )}
 

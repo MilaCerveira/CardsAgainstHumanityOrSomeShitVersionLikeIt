@@ -57,7 +57,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket, setWinnerId }) =
     }
 
     const addToHand = () => {
-        if (drawPhase) {
+        if (drawPhase && hand.length) {
             return;
         }
         let tempHand = [...hand];
@@ -183,7 +183,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket, setWinnerId }) =
         socket.emit('updateScores', tempScores);
 
         resetRound();
-        if (tempScores[tempIndex].value >= 5) {
+        if (tempScores[tempIndex].value >= 3) {
             setWinnerId(tempScores[tempIndex].playerName);
             socket.emit('setWinner', tempScores[tempIndex].playerName);
             socket.emit('setPhase', 'gameOverPhase');

@@ -1,10 +1,10 @@
 .card {
     cursor: pointer;
     background-color: #121212;
-    height: 50vh;
+    height: 40vh;
     perspective: 1000px;
     color: whitesmoke;
-    width: 300px;
+    width: 13vw;
     display: flex;
     border-radius: 20px;
     justify-content: space-evenly;
