@@ -3,7 +3,7 @@ import BlackCard from './BlackCard';
 import './JudgeModal.css';
 import arrayShuffle from 'array-shuffle';
 
-const JudgeModal = ({ selectedBlackCard, selectedAnswerCards, players, updateVote }) => {
+const JudgeModal = ({ selectedBlackCard, selectedAnswerCards, players, updateVote, judge, playerId }) => {
 
     let tempPlayers = arrayShuffle([...players]);
     let playersFilter = tempPlayers.map((player) => {
@@ -18,12 +18,16 @@ const JudgeModal = ({ selectedBlackCard, selectedAnswerCards, players, updateVot
 
     const handleVote = (event) => {
         event.preventDefault();
+        if(playerId!==judge){
+            return;
+        }
+       
         let tempString = event.target.id.replace(/[^0-9\.]+/g, "")
         console.dir(players[tempString-1].name);
         updateVote(players[tempString-1].name);
     }
 
-
+    // change so judge chooses winner only
 
     const answers = playersFilter.map((player, index) => {
         let tempClass = `player${index + 1}`
@@ -41,7 +45,9 @@ const JudgeModal = ({ selectedBlackCard, selectedAnswerCards, players, updateVot
                         )
                     })}
                 </div>
+                {playerId ===judge && (
                 <button id={tempClass} onClick={handleVote}>Vote!</button>
+                )}
             </div>
         )
     })
@@ -56,7 +62,6 @@ const JudgeModal = ({ selectedBlackCard, selectedAnswerCards, players, updateVot
                 <div className={'JudgeModal-AnswerContent'}>
 
                     {answers}
-                    {/* {answers} */}
 
 
                 </div>

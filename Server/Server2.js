@@ -1,9 +1,8 @@
 let players = [];
-let judge = 0;
+let judgeIndex = 0;
 let room;
 let deck = [];
 let phases = [];
-let votes = [];
 
 
 
@@ -63,7 +62,7 @@ io.on('connection', socket => {
     })
 
     socket.on('setJudge', () => {
-        socket.nsp.to(room).emit('sendJudge', players[judge]);
+        socket.nsp.to(room).emit('sendJudge', players[judgeIndex]);
     })
 
     socket.on('setDeck', cards => {
@@ -82,11 +81,16 @@ io.on('connection', socket => {
         }
     })
 
-    socket.on('addVote', (vote) => {
-        votes.push(vote);
-        console.log(votes);
+    socket.on('updateScores', scores => {
+        socket.to(room).emit('receiveScores', scores);
     })
-
+    socket.on('updateJudge', () => {
+        judgeIndex+=1;
+        if(judgeIndex >= players.length) {
+            judgeIndex = 0;
+        }
+        socket.nsp.to(room).emit('sendJudge', players[judgeIndex]);
+    })
     socket.on('disconnect', () => {
 
         let tempIndex = players.findIndex(player => {

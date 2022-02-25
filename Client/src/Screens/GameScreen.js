@@ -27,9 +27,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     const [popUp, setPopUp] = useState(false);
     const [drawPhase, setDrawPhase] = useState(false);
     const [selectPhase, setSelectPhase] = useState(false);
-    const [judgePhase, setJudgePhase] = useState(false);
-    const [judgeModal, setJudgeModal] = useState(false);
-    const [votes, setVotes] = useState([]);
+
 
     //  ['drawBlackCardPhase','drawPhase',selectPhase','judgePhase','rewardPhase', 'gameOverPhase']);
     useEffect(() => {
@@ -49,7 +47,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     useEffect(() => {
         if (loaded && cards[0]) {
             let tempCard = arrayShuffle(cards[0].white);
-            cards[0].white=arrayShuffle(tempCard);
+            cards[0].white = arrayShuffle(tempCard);
             CreateHand();
             setBlackDeck(arrayShuffle(cards[0].black));
             socket.emit('setJudge');
@@ -61,7 +59,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     }
 
     const addToHand = () => {
-        if(drawPhase) {
+        if (drawPhase) {
             return;
         }
         let tempHand = [...hand];
@@ -69,7 +67,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         tempHand.push(tempWhiteCards.splice(0, 1)[0]);
         setHand(tempHand);
         setWhiteDeck(tempWhiteCards);
-        socket.emit('updateWhiteDeck',tempWhiteCards);
+        socket.emit('updateWhiteDeck', tempWhiteCards);
         if (tempHand.length >= 7) {
             socket.emit('checkPhase', 'selectPhase');
             setDrawPhase(true);
@@ -78,7 +76,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
     }
 
     const CreateBlackCard = () => {
-         if(judge != playerId) {
+        if (judge != playerId) {
             return;
         }
 
@@ -86,7 +84,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         let tempSelected = tempBlackCards.splice(0, 1);
         setSelectedBlackCard(tempSelected[0]);
         setBlackDeck(tempBlackCards);
-        socket.emit('updateBlackCards',tempSelected[0],tempBlackCards);
+        socket.emit('updateBlackCards', tempSelected[0], tempBlackCards);
 
         if (hand.length >= 7) {
             socket.emit('setPhase', 'selectPhase');
@@ -94,7 +92,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
         else {
             socket.emit('setPhase', 'drawPhase');
         }
-    
+
     }
 
     socket.on('receiveHand', (hand) => {
@@ -111,41 +109,43 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
 
     socket.on('sendJudge', (judge) => {
         setJudge(judge.name);
-    } )
+    })
 
-    socket.on('receiveUpdatedBlackCards',(blackCard,blackDeck) => {
+    socket.on('receiveUpdatedBlackCards', (blackCard, blackDeck) => {
         setBlackDeck(blackDeck);
         setSelectedBlackCard(blackCard);
 
     })
 
-    socket.on('receiveUpdatedWhiteCards',(whiteCards) => {
+    socket.on('receiveUpdatedWhiteCards', (whiteCards) => {
         setSelectedAnswerCards(whiteCards);
 
     })
 
-    socket.on('receiveUpdatedWhiteDeck',(whiteDeck)=> {
+    socket.on('receiveUpdatedWhiteDeck', (whiteDeck) => {
         setWhiteDeck(whiteDeck);
     })
 
+    socket.on('receiveScores', scores => {
+        setScores(scores);
+    })
+
     const updateAnswers = (cardId, cardsCounter) => {
-        if(selectPhase) {
+        if (selectPhase) {
             return;
         }
         let tempSelectedArray = selectedAnswerCards;
-        
+
         let tempHand = [...hand];
         let tempCard = tempHand.splice(cardId, 1);
-        tempSelectedArray.push({name: playerId,card:tempCard[0]});
+        tempSelectedArray.push({ name: playerId, card: tempCard[0] });
         setHand(tempHand);
-        socket.emit('updateWhiteCards',tempSelectedArray);
-
-
+        socket.emit('updateWhiteCards', tempSelectedArray);
+        
         if (cardsCounter + 1 >= selectedBlackCard.pick) {
-            socket.emit('checkPhase', 'judgePhase'); // this will change to judge phase when implemented
+            socket.emit('checkPhase', 'judgePhase'); 
             setSelectPhase(true);
-            let tempRound = roundCounter;
-            setRoundCounter(tempRound += 1);
+
         }
 
     }
@@ -159,27 +159,48 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
 
         setTimeout(() => {
             setPopUp(false);
-        },2000);
+        }, 2000);
 
     }
 
     const updateVote = (player) => {
-        if(judgePhase) {
-            return;
-        }
-        votes.push(player);
+        let tempScores = scores;
+        let tempIndex = tempScores.findIndex(score => {
+            return score.playerName === player;
+        })
 
-        socket.emit('checkPhase', 'rewardPhase');
-        socket.emit('addVote', player);
-        setJudgePhase(true);
+        tempScores[tempIndex].value += 1;
+        console.log(tempScores);
+        socket.emit('setPhase', 'rewardPhase');
+
+        socket.emit('updateScores', tempScores);
+
+        resetRound();
+
+
+    }
+
+
+    const resetRound = () => {
+
+        setSelectedAnswerCards([]);
+        setSelectedBlackCard(undefined);
+        let tempRound = roundCounter;
+        setRoundCounter(tempRound += 1);
+        socket.emit('updateWhiteCards', []);
+        socket.emit('updateBlackCards', undefined, blackDeck);
+        socket.emit('updateJudge');
+        socket.emit('setPhase', 'drawBlackCardPhase');
+    
+
     }
 
     return (
         <>
-           {selectedBlackCard && gamePhase === 'judgePhase' &&(
-         <JudgeModal selectedBlackCard={selectedBlackCard} selectedAnswerCards={selectedAnswerCards} players={players} updateVote = {(player)=>updateVote(player)}/>
-        )}            
-        <div id="gameScreen">
+            {selectedBlackCard && gamePhase === 'judgePhase' && (
+                <JudgeModal selectedBlackCard={selectedBlackCard} selectedAnswerCards={selectedAnswerCards} players={players} updateVote={(player) => updateVote(player)} playerId={playerId} judge={judge} />
+            )}
+            <div id="gameScreen">
 
                 {selectedBlackCard && (
                     <div id='blackCard'>
@@ -190,13 +211,13 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
                 )}
                 {hand && (
                     <div id='hand1'>
-                        <Slider hand={hand} gamePhase={gamePhase} selectedBlackCard={selectedBlackCard} updateAnswers={(cardId, cardsCounter) => updateAnswers(cardId, cardsCounter)} updatePopUp = {() => handlePopUp()}/>
+                        <Slider hand={hand} gamePhase={gamePhase} selectedBlackCard={selectedBlackCard} updateAnswers={(cardId, cardsCounter) => updateAnswers(cardId, cardsCounter)} updatePopUp={() => handlePopUp()} />
                     </div>
                 )}
 
-                 {popUp && 
-                    <PopUp text = 'it is not the select phase'/>}
-        
+                {popUp &&
+                    <PopUp text='it is not the select phase' />}
+
                 {cards[0] && (
                     <div id='blackDeck'>
                         <p>Black Deck</p>
@@ -220,7 +241,7 @@ const GameScreen = ({ cards, loaded, playerId, players, socket }) => {
                     <button onClick={goToResults}>Go To Results</button>
                 </div>
 
-               
+
 
             </div>
         </>
